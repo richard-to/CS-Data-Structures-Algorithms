@@ -2,26 +2,26 @@ package to.richard;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-public class LinkedListIter<LinkedListNode> implements Iterator<LinkedListNode> {
+public class LinkedListIter<E> implements Iterator<E> {
 
-    private LinkedListNode node;
+    private LinkedListNode<E> node;
 
-    public LinkedListIter(LinkedListNode node){
+    public LinkedListIter(LinkedListNode<E> node){
         this.node = node;
     }
 
     public boolean hasNext(){
-        if(this.node.next == null)
+        if(this.node == null)
             return false;
         else
             return true;
     }
 
-    public LinkedListNode next(){
+    public E next(){
         if(hasNext()){
-            LinkedListNode current = node;
+            LinkedListNode<E> current = node;
             node = node.next;
-            return node;
+            return current.object;
         } else {
             return null;
         }
