@@ -6,6 +6,10 @@ public class Member {
     private String name;
     private String standing;
 
+    public Member(String name) {
+        this(0.0f, 0.0f, name, "Fr");
+    }
+
     public Member(float hoursAttempted, float pointsEarned, String name, String standing) {
         this.hoursAttempted = hoursAttempted;
         this.pointsEarned = pointsEarned;
