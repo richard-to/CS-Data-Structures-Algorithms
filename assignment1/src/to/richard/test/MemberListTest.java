@@ -19,7 +19,8 @@ public class MemberListTest {
     public void testAddDuplicate() throws Exception {
         Member member = new Member("Bob");
         MemberList memberList = new MemberList();
-        memberList.add(member).add(member);
+        memberList.add(member);
+        assertEquals(false, memberList.add(member));
         assertEquals(member.toString(), memberList.toString());
     }
 
