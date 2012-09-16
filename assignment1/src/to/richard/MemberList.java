@@ -17,6 +17,10 @@ public class MemberList {
         return this;
     }
 
+    public boolean contains(Member member){
+        return this.members.contains(member);
+    }
+
     public String toString(){
         LinkedListIter<Member> iter = this.members.iterator();
         StringBuffer out = new StringBuffer();
