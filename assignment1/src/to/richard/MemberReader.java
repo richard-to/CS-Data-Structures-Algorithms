@@ -28,4 +28,23 @@ public class MemberReader {
         }
         return memberList;
     }
+
+    public MemberList readNew(MemberList memberList, String filePath){
+        File file = new File(filePath);
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String name;
+            while((name = br.readLine()) != null) {
+                Member member = new Member(name);
+                if(!memberList.contains(member)){
+                    memberList.add(member);
+                }
+            }
+        } catch(FileNotFoundException e) {
+            System.err.println(e.getMessage());
+        } catch(IOException e) {
+            System.err.println(e.getMessage());
+        }
+        return memberList;
+    }
 }
