@@ -17,7 +17,13 @@ public class MemberList {
         return this;
     }
 
-    public void print(){
-
+    public String toString(){
+        LinkedListIter<Member> iter = this.members.iterator();
+        StringBuffer out = new StringBuffer();
+        while(iter.hasNext()){
+            Member member = iter.next();
+            out.append(member).append("\n");
+        }
+        return out.toString().trim();
     }
 }
