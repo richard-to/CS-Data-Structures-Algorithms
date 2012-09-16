@@ -19,7 +19,7 @@ public class MemberReader {
                         Float.parseFloat(data[0]),
                         Float.parseFloat(data[1]),
                         data[2],
-                        data[3]));
+                        data[3] + " " + data[4]));
             }
         } catch(FileNotFoundException e) {
             System.err.println(e.getMessage());
