@@ -12,10 +12,12 @@ public class MemberList {
         this.members = members;
     }
 
-    public MemberList add(Member member){
-        if(!contains(member))
+    public boolean add(Member member){
+        if(!contains(member)){
             this.members.add(member);
-        return this;
+            return true;
+        } else
+            return false;
     }
 
     public boolean contains(Member member){
