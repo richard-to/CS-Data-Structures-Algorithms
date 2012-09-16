@@ -24,6 +24,16 @@ public class MemberList {
         return this.members.contains(member);
     }
 
+    public Member find(String name) {
+        LinkedListIter<Member> iter = this.members.iterator();
+        while(iter.hasNext()){
+            Member member = iter.next();
+            if(member.isNamed(name))
+                return member;
+        }
+        return null;
+    }
+
     public String toString(){
         LinkedListIter<Member> iter = this.members.iterator();
         StringBuffer out = new StringBuffer();
