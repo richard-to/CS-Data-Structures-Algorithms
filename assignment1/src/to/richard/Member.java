@@ -7,7 +7,7 @@ public class Member {
     private String standing;
 
     public Member(String name) {
-        this(0.0f, 0.0f, name, "Fr");
+        this(0.0f, 0.0f, "Fr", name);
     }
 
     public Member(float hoursAttempted, float pointsEarned, String standing, String name) {
@@ -61,20 +61,13 @@ public class Member {
 
         Member member = (Member) o;
 
-        if (Float.compare(member.hoursAttempted, hoursAttempted) != 0) return false;
-        if (Float.compare(member.pointsEarned, pointsEarned) != 0) return false;
         if (!name.equals(member.name)) return false;
-        if (!standing.equals(member.standing)) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = (hoursAttempted != +0.0f ? Float.floatToIntBits(hoursAttempted) : 0);
-        result = 31 * result + (pointsEarned != +0.0f ? Float.floatToIntBits(pointsEarned) : 0);
-        result = 31 * result + name.hashCode();
-        result = 31 * result + standing.hashCode();
-        return result;
+        return name.hashCode();
     }
 }
