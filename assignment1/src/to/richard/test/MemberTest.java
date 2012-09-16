@@ -59,4 +59,13 @@ public class MemberTest {
         assertEquals(3f, member1.getHoursAttempted(), 0.0);
         assertEquals(7.5f, member1.getPointsEarned(), 0.0);
     }
+
+    @Test
+    public void testUpdateStanding() throws Exception {
+        Member member1 = new Member(1.5f, 4.5f, "So", "Bob");
+        member1.updateGrades(1.5f, 34f).updateStanding();
+        assertEquals(Member.SOPHOMORE, member1.getStanding());
+        member1.updateGrades(1.5f, 60f).updateStanding();
+        assertEquals(Member.SENIOR, member1.getStanding());
+    }
 }
