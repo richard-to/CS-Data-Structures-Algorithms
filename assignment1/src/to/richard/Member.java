@@ -33,6 +33,10 @@ public class Member {
         this.name = name;
     }
 
+    public boolean isNamed(String name){
+        return this.name.equals(name);
+    }
+
     public float getPointsEarned() {
         return pointsEarned;
     }
