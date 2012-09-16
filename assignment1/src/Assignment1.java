@@ -11,5 +11,6 @@ public class Assignment1 {
     public static void main(String[] args) {
         MemberReader reader = new MemberReader();
         MemberList memberList = reader.readCurrent(UHC_FILE);
+        System.out.print(memberList.toString());
     }
 }
