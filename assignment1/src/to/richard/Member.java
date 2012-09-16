@@ -17,6 +17,15 @@ public class Member {
         this.standing = standing;
     }
 
+    public void updateGrades(Float hoursAttempted, Float pointsEarned){
+        this.hoursAttempted += hoursAttempted;
+        this.pointsEarned += pointsEarned;
+    }
+
+    public boolean isNamed(String name){
+        return this.name.equals(name);
+    }
+
     public String getStanding() {
         return standing;
     }
@@ -31,10 +40,6 @@ public class Member {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public boolean isNamed(String name){
-        return this.name.equals(name);
     }
 
     public float getPointsEarned() {
