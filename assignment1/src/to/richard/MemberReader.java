@@ -36,9 +36,7 @@ public class MemberReader {
             String name;
             while((name = br.readLine()) != null) {
                 Member member = new Member(name);
-                if(!memberList.contains(member)){
-                    memberList.add(member);
-                }
+                memberList.add(member);
             }
         } catch(FileNotFoundException e) {
             System.err.println(e.getMessage());
