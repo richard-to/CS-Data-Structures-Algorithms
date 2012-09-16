@@ -49,6 +49,11 @@ public class Member {
         this.hoursAttempted = hoursAttempted;
     }
 
+    public String toString() {
+        return this.hoursAttempted + " " + this.pointsEarned +
+                " " + this.standing + " " + this.name;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
