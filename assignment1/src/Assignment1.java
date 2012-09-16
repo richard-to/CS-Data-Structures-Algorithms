@@ -1,5 +1,5 @@
-import to.richard.LinkedList;
 import to.richard.Member;
+import to.richard.MemberList;
 import to.richard.MemberReader;
 
 public class Assignment1 {
@@ -10,6 +10,6 @@ public class Assignment1 {
 
     public static void main(String[] args) {
         MemberReader reader = new MemberReader();
-        LinkedList<Member> memberList = reader.readCurrent(UHC_FILE);
+        MemberList memberList = reader.readCurrent(UHC_FILE);
     }
 }
