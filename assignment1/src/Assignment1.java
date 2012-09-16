@@ -1,6 +1,5 @@
-import to.richard.Member;
 import to.richard.MemberList;
-import to.richard.MemberReader;
+import to.richard.MemberManager;
 
 public class Assignment1 {
 
@@ -9,10 +8,10 @@ public class Assignment1 {
     private static final String GRADES_FILE = "grades.dat";
 
     public static void main(String[] args) {
-        MemberReader reader = new MemberReader();
-        MemberList memberList = reader.readCurrent(UHC_FILE);
+        MemberManager manager = new MemberManager();
+        MemberList memberList = manager.loadCurrent(UHC_FILE);
         System.out.print(memberList.toString());
-        memberList = reader.readNew(memberList, NEW_FILE);
+        memberList = manager.loadNew(memberList, NEW_FILE);
         System.out.print(memberList.toString());
     }
 }
