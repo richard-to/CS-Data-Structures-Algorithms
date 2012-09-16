@@ -34,6 +34,15 @@ public class MemberList {
         return null;
     }
 
+    public MemberList updateStandings() {
+        LinkedListIter<Member> iter = this.members.iterator();
+        while(iter.hasNext()){
+            Member member = iter.next();
+            member.updateStanding();
+        }
+        return this;
+    }
+
     public String toString(){
         LinkedListIter<Member> iter = this.members.iterator();
         StringBuffer out = new StringBuffer();
