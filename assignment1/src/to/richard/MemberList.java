@@ -13,7 +13,8 @@ public class MemberList {
     }
 
     public MemberList add(Member member){
-        this.members.add(member);
+        if(!contains(member))
+            this.members.add(member);
         return this;
     }
 
