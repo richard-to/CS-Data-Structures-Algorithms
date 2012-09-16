@@ -7,9 +7,14 @@ public class MemberManager {
     private static final String ERR_DUPLICATE = "Error: Member already exists.";
     private static final String DELIM = " ";
 
-    public MemberList loadCurrent(String filePath){
+    private MemberList memberList;
+
+    public MemberManager(){
+        memberList = new MemberList();
+    }
+
+    public MemberManager loadCurrent(String filePath){
         File file = new File(filePath);
-        MemberList memberList = new MemberList();
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
@@ -27,10 +32,10 @@ public class MemberManager {
         } catch(IOException e) {
             System.err.println(e.getMessage());
         }
-        return memberList;
+        return this;
     }
 
-    public MemberList loadNew(MemberList memberList, String filePath){
+    public MemberManager loadNew(String filePath){
         File file = new File(filePath);
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
@@ -47,10 +52,10 @@ public class MemberManager {
         } catch(IOException e) {
             System.err.println(e.getMessage());
         }
-        return memberList;
+        return this;
     }
 
-    public MemberList loadNewGrades(MemberList memberList, String filePath){
+    public MemberManager loadNewGrades(String filePath){
         File file = new File(filePath);
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
@@ -72,6 +77,16 @@ public class MemberManager {
         } catch(IOException e) {
             System.err.println(e.getMessage());
         }
-        return memberList;
+        return this;
+    }
+
+    public MemberManager updateStandings(){
+        memberList.updateStandings();
+        return this;
+    }
+
+    public MemberManager print(){
+        System.out.println(memberList.toString());
+        return this;
     }
 }
