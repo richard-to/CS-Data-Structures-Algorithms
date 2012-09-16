@@ -2,11 +2,12 @@ package to.richard;
 
 import java.io.*;
 
-public class MemberReader {
+public class MemberManager {
 
+    private static final String ERR_DUPLICATE = "Error: Member already exists.";
     private static final String DELIM = " ";
 
-    public MemberList readCurrent(String filePath){
+    public MemberList loadCurrent(String filePath){
         File file = new File(filePath);
         MemberList memberList = new MemberList();
 
@@ -29,7 +30,27 @@ public class MemberReader {
         return memberList;
     }
 
-    public MemberList readNew(MemberList memberList, String filePath){
+    public MemberList loadNew(MemberList memberList, String filePath){
+        File file = new File(filePath);
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String name;
+            while((name = br.readLine()) != null) {
+                Member member = new Member(name);
+                if(!memberList.contains(member))
+                    memberList.add(member);
+                else
+                    System.err.println(ERR_DUPLICATE);
+            }
+        } catch(FileNotFoundException e) {
+            System.err.println(e.getMessage());
+        } catch(IOException e) {
+            System.err.println(e.getMessage());
+        }
+        return memberList;
+    }
+
+    public MemberList loadNewGrades(MemberList memberList, String filePath){
         File file = new File(filePath);
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
