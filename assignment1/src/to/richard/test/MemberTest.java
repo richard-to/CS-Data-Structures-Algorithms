@@ -33,7 +33,7 @@ public class MemberTest {
     @Test
     public void testEquals() throws Exception {
         Member member1 = new Member(1.5f, 4.5f, "Fr", "Bob");
-        Member member2 = new Member(1.5f, 4.5f, "Fr", "Bob");
+        Member member2 = new Member(1.5f, 4.5f, "So", "Bob");
 
         assertEquals(true, member1.equals(member1));
         assertEquals(true, member1.equals(member2));
@@ -42,7 +42,13 @@ public class MemberTest {
     @Test
     public void testNotEquals() throws Exception {
         Member member1 = new Member(1.5f, 4.5f, "So", "Bob");
-        Member member2 = new Member(1.5f, 4.5f, "Fr", "Bob");
+        Member member2 = new Member(1.5f, 4.5f, "Fr", "Bob Three");
         assertEquals(false, member1.equals(member2));
+    }
+
+    @Test
+    public void testIsNamed() throws Exception {
+        Member member1 = new Member(1.5f, 4.5f, "So", "Bob");
+        assertEquals(true, member1.isNamed("Bob"));
     }
 }
