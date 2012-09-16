@@ -54,10 +54,18 @@ public class MemberManager {
         File file = new File(filePath);
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
-            String name;
-            while((name = br.readLine()) != null) {
-                Member member = new Member(name);
-                memberList.add(member);
+            String line;
+            while((line = br.readLine()) != null) {
+                String[] data = line.split(DELIM);
+
+                Float hoursAttempted = Float.parseFloat(data[0]);
+                Float pointsEarned = Float.parseFloat(data[1]);
+                String name = data[2] + " " + data[3];
+
+                Member member = memberList.find(name);
+                if(member != null){
+                    member.updateGrades(hoursAttempted, pointsEarned);
+                }
             }
         } catch(FileNotFoundException e) {
             System.err.println(e.getMessage());
