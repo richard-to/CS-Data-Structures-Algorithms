@@ -46,6 +46,10 @@ public class LinkedList<E> {
         return this;
     }
 
+    public LinkedList<E> add(E object) {
+        return addFirst(object);
+    }
+
     public LinkedList<E> add(int pos, E object) throws IndexOutOfBoundsException {
         if(pos == 0){
             return addFirst(object);
