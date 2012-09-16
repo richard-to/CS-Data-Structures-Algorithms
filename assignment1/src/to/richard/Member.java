@@ -10,7 +10,7 @@ public class Member {
         this(0.0f, 0.0f, name, "Fr");
     }
 
-    public Member(float hoursAttempted, float pointsEarned, String name, String standing) {
+    public Member(float hoursAttempted, float pointsEarned, String standing, String name) {
         this.hoursAttempted = hoursAttempted;
         this.pointsEarned = pointsEarned;
         this.name = name;
