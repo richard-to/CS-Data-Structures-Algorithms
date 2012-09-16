@@ -13,5 +13,7 @@ public class Assignment1 {
         System.out.print(memberList.toString());
         memberList = manager.loadNew(memberList, NEW_FILE);
         System.out.print(memberList.toString());
+        memberList = manager.loadNewGrades(memberList, GRADES_FILE);
+        System.out.print(memberList.toString());
     }
 }
