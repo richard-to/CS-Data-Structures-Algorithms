@@ -12,5 +12,6 @@ public class Assignment1 {
         manager.loadCurrent(UHC_FILE).print();
         manager.loadNew(NEW_FILE).print();
         manager.loadNewGrades(GRADES_FILE).print();
+        manager.sortByPoints().print();
     }
 }
