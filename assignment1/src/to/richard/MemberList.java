@@ -15,6 +15,10 @@ public class MemberList {
         this.members = members;
     }
 
+    public int size() {
+        return this.members.size();
+    }
+
     public boolean add(Member member){
         if(!contains(member)){
             this.members.add(member);
@@ -64,6 +68,19 @@ public class MemberList {
             }
         }
         return dropList;
+    }
+
+    public String printGPA() {
+        LinkedListIter<Member> iter = this.members.iterator();
+        StringBuffer out = new StringBuffer();
+        while(iter.hasNext()){
+            Member member = iter.next();
+            out.append(member.getName())
+                .append(": ")
+                .append(member.getGPA())
+                .append("\n");
+        }
+        return out.toString().trim();
     }
 
     public String toString(){
