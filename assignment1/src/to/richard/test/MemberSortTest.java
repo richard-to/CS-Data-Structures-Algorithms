@@ -33,7 +33,6 @@ public class MemberSortTest {
         LinkedListIter<Member> iter = sortedList.iterator();
         while(iter.hasNext()){
             Member member = iter.next();
-            System.out.println(member.getName());
             assertEquals(names[index], member.getName());
             index++;
         }
