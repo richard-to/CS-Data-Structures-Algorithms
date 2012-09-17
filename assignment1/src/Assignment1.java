@@ -13,5 +13,6 @@ public class Assignment1 {
         manager.loadNew(NEW_FILE).print();
         manager.loadNewGrades(GRADES_FILE).print();
         manager.sortByPoints().print();
+        manager.dropUnderPerforming().printGPA();
     }
 }
