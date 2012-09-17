@@ -53,26 +53,22 @@ public class MemberSort {
         int rightSize = right.length;
         Member[] result = new Member[leftSize + rightSize];
 
-        int index = 0;
+        int leftIndex = 0;
+        int rightIndex = 0;
         int resultIndex = 0;
-        while(index < leftSize || index < rightSize){
-            if(index < leftSize && index < rightSize){
-                if(compare.compare(left[index], right[index]) > 0){
-                    result[resultIndex++] = left[index];
-                    result[resultIndex++] = right[index];
-                    index++;
-                } else {
-                    result[resultIndex++] = right[index];
-                    result[resultIndex++] = left[index];
-                    index++;
-                }
-            } else if(index < leftSize) {
-                result[resultIndex++] = left[index++];
-            } else if(index < rightSize) {
-                result[resultIndex++] = right[index++];
-
-            }
+        while(leftIndex < leftSize && rightIndex < rightSize){
+            if(compare.compare(left[leftIndex], right[rightIndex]) >= 0)
+                result[resultIndex++] = left[leftIndex++];
+            else
+                result[resultIndex++] = right[rightIndex++];
         }
+
+        while(leftIndex < leftSize)
+            result[resultIndex++] = left[leftIndex++];
+
+        while(rightIndex < rightSize)
+            result[resultIndex++] = right[rightIndex++];
+
         return result;
     }
 }
