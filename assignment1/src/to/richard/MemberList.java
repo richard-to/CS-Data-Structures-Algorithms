@@ -51,6 +51,21 @@ public class MemberList {
         return this;
     }
 
+    public MemberList dropUnderPerforming() {
+        MemberList dropList = new MemberList();
+        LinkedListIter<Member> iter = this.members.iterator();
+        StringBuffer out = new StringBuffer();
+        while(iter.hasNext()){
+            Member member = iter.next();
+            if(member.isUnderPerforming()){
+                dropList.add(member);
+                this.members.remove(member);
+
+            }
+        }
+        return dropList;
+    }
+
     public String toString(){
         LinkedListIter<Member> iter = this.members.iterator();
         StringBuffer out = new StringBuffer();
