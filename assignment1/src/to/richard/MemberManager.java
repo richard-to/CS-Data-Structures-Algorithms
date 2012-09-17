@@ -85,8 +85,14 @@ public class MemberManager {
         return this;
     }
 
+    public MemberManager sortByPoints(){
+        memberList.sort(new MemberSortByPoints());
+        return this;
+    }
+
     public MemberManager print(){
         System.out.println(memberList.toString());
+        System.out.println();
         return this;
     }
 }
