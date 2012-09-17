@@ -90,6 +90,19 @@ public class MemberManager {
         return this;
     }
 
+    public MemberManager dropUnderPerforming(){
+        MemberList dropList = memberList.dropUnderPerforming();
+        System.out.println(dropList.toString());
+        System.out.println();
+        return this;
+    }
+
+    public MemberManager printGPA(){
+        System.out.println(memberList.printGPA());
+        System.out.println();
+        return this;
+    }
+
     public MemberManager print(){
         System.out.println(memberList.toString());
         System.out.println();
