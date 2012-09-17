@@ -80,4 +80,10 @@ public class MemberTest {
         Member member1 = new Member("Bob");
         assertEquals(0.0f, member1.calculateGPA().getGPA(), 0.00001);
     }
+
+    @Test
+    public void testUnderPerforming() throws Exception {
+        Member member1 = new Member(29.0f, 60.5f, Member.SOPHOMORE, "Bob");
+        assertEquals(true, member1.isUnderPerforming());
+    }
 }
