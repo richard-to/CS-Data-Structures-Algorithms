@@ -1,11 +1,14 @@
 package to.richard;
 
+import java.util.Comparator;
+
 public class MemberList {
 
     private LinkedList<Member> members;
-
+    private MemberSort memberSort;
     public MemberList(){
         this.members = new LinkedList<Member>();
+        this.memberSort = new MemberSort();
     }
 
     public MemberList(LinkedList<Member> members){
@@ -40,6 +43,11 @@ public class MemberList {
             Member member = iter.next();
             member.updateStanding();
         }
+        return this;
+    }
+
+    public MemberList sort(Comparator<Member> compare) {
+        members = memberSort.sort(members, compare);
         return this;
     }
 
