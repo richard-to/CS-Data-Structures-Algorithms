@@ -31,4 +31,16 @@ public class MemberListTest {
         memberList.add(member);
         assertEquals(true, memberList.contains(member));
     }
+
+    @Test
+    public void testDropUnderPerforming() throws Exception {
+        Member member1 = new Member(15.0f, 60.0f, Member.SOPHOMORE, "Bob");
+        Member member2 = new Member(30.0f, 60.5f, Member.SOPHOMORE, "Jim");
+        MemberList memberList = new MemberList();
+        memberList.add(member1);
+        memberList.add(member2);
+        MemberList dropList = memberList.dropUnderPerforming();
+        assertEquals(false, memberList.contains(member2));
+        assertEquals(true, dropList.contains(member2));
+    }
 }
