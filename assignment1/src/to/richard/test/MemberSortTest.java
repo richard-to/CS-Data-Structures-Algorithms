@@ -6,8 +6,6 @@ import static org.junit.Assert.assertEquals;
 
 import to.richard.*;
 
-import java.io.Console;
-
 public class MemberSortTest {
 
     private LinkedList<Member> list;
@@ -17,8 +15,11 @@ public class MemberSortTest {
     public void setUp() {
         compare = new MemberSortByPoints();
         list = new LinkedList<Member>();
+        list.add(new Member(20.0f, 1.0f, Member.SENIOR, "Bill"));
+        list.add(new Member(20.0f, 1.0f, Member.FRESHMAN, "Sam"));
         list.add(new Member(3.0f, 4.0f, Member.FRESHMAN, "Bob"));
-        list.add(new Member(8.0f, 1.0f, Member.SENIOR, "Jim"));
+        list.add(new Member(8.0f, 1.5f, Member.SENIOR, "Jim"));
+        list.add(new Member(1.0f, 5.6f, Member.SOPHOMORE, "Joe"));
         list.add(new Member(20.0f, 10.0f, Member.FRESHMAN, "Rob"));
         list.add(new Member(1.0f, 4.0f, Member.SOPHOMORE, "Larry"));
     }
@@ -27,11 +28,12 @@ public class MemberSortTest {
     public void testSort() throws Exception {
         MemberSort memberSort = new MemberSort();
         LinkedList<Member> sortedList = memberSort.sort(list, compare);
-        String[] names = new String[]{"Rob", "Bob", "Larry", "Jim"};
+        String[] names = new String[]{"Rob", "Joe", "Larry", "Bob", "Jim", "Sam", "Bill"};
         int index = 0;
         LinkedListIter<Member> iter = sortedList.iterator();
         while(iter.hasNext()){
             Member member = iter.next();
+            System.out.println(member.getName());
             assertEquals(names[index], member.getName());
             index++;
         }
