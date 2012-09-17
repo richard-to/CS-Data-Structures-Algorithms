@@ -16,6 +16,7 @@ public class Member {
     private float pointsEarned;
     private String name;
     private String standing;
+    private float gpa;
 
     public Member(String name) {
         this(0.0f, 0.0f, FRESHMAN, name);
@@ -26,6 +27,8 @@ public class Member {
         this.pointsEarned = pointsEarned;
         this.name = name;
         this.standing = standing;
+
+        calculateGPA();
     }
 
     public Member updateGrades(Float hoursAttempted, Float pointsEarned){
@@ -44,6 +47,21 @@ public class Member {
         else
             standing = FRESHMAN;
         return this;
+    }
+
+    public Member calculateGPA()
+    {
+        if(hoursAttempted == 0.0f){
+            gpa = 0.0f;
+        } else {
+            gpa = pointsEarned / hoursAttempted;
+        }
+        return this;
+    }
+
+    public float getGPA()
+    {
+        return gpa;
     }
 
     public boolean isNamed(String name){
@@ -72,6 +90,7 @@ public class Member {
 
     public void setPointsEarned(float pointsEarned) {
         this.pointsEarned = pointsEarned;
+        calculateGPA();
     }
 
     public float getHoursAttempted() {
@@ -80,6 +99,7 @@ public class Member {
 
     public void setHoursAttempted(float hoursAttempted) {
         this.hoursAttempted = hoursAttempted;
+        calculateGPA();
     }
 
     public String toString() {
