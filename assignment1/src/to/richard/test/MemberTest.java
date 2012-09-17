@@ -68,4 +68,16 @@ public class MemberTest {
         member1.updateGrades(1.5f, 60f).updateStanding();
         assertEquals(Member.SENIOR, member1.getStanding());
     }
+
+    @Test
+    public void testCalculateGPA() throws Exception {
+        Member member1 = new Member(29.0f, 60.5f, Member.SOPHOMORE, "Bob");
+        assertEquals(60.5f/29.0f, member1.calculateGPA().getGPA(), 0.00001);
+    }
+
+    @Test
+    public void testCalculateGPAZero() throws Exception {
+        Member member1 = new Member("Bob");
+        assertEquals(0.0f, member1.calculateGPA().getGPA(), 0.00001);
+    }
 }
