@@ -7,6 +7,8 @@ public class Member {
     public static final String JUNIOR = "Jr";
     public static final String SENIOR = "Sr";
 
+    public static final float GPA_BORDER = 3.5f;
+
     public static final float FR_STAND = 0.0f;
     public static final float SO_STAND = 30.0f;
     public static final float JR_STAND = 60.0f;
@@ -62,6 +64,11 @@ public class Member {
     public float getGPA()
     {
         return gpa;
+    }
+
+    public boolean isUnderPerforming()
+    {
+        return (gpa < GPA_BORDER);
     }
 
     public boolean isNamed(String name){
