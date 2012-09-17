@@ -35,12 +35,22 @@ public class MemberListTest {
     @Test
     public void testDropUnderPerforming() throws Exception {
         Member member1 = new Member(15.0f, 60.0f, Member.SOPHOMORE, "Bob");
-        Member member2 = new Member(30.0f, 60.5f, Member.SOPHOMORE, "Jim");
+        Member member2 = new Member(15.0f, 60.0f, Member.SOPHOMORE, "Joe");
+        Member member3 = new Member(30.0f, 60.5f, Member.SOPHOMORE, "Jim");
+        Member member4 = new Member(15.0f, 60.0f, Member.SOPHOMORE, "Bill");
+        Member member5 = new Member(15.0f, 60.0f, Member.SOPHOMORE, "Moe");
+
         MemberList memberList = new MemberList();
         memberList.add(member1);
         memberList.add(member2);
+        memberList.add(member3);
+        memberList.add(member4);
+        memberList.add(member5);
+
         MemberList dropList = memberList.dropUnderPerforming();
-        assertEquals(false, memberList.contains(member2));
-        assertEquals(true, dropList.contains(member2));
+        assertEquals(4, memberList.size());
+        assertEquals(1, dropList.size());
+        assertEquals(false, memberList.contains(member3));
+        assertEquals(true, dropList.contains(member3));
     }
 }
