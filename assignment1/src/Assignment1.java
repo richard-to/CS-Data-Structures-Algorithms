@@ -53,7 +53,7 @@ public class Assignment1 {
             System.out.println(PROMPT);
             br.readLine();
 
-            System.out.println("Saving member List as uhc.dat...");
+            System.out.println("Saving member list as uhc.dat...");
             manager.saveList(SAVE_FILE);
             System.out.println("Updated member list saved.");
 
