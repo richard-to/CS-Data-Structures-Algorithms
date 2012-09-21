@@ -7,7 +7,7 @@ import to.richard.MemberSortByPoints;
 
 public class BenchmarkMergeSort {
     public static void main(String[] args) {
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i < 3; i++){
             System.out.println("Run " + i);
             benchmark(1000);
             benchmark(10000);
