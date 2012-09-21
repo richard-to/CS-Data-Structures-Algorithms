@@ -5,13 +5,13 @@ CS330 HW1 Write Up
 ---
 
 a and b) For the sorting algorithm, I implemented merge sort. I used arrays in my implementation, so I had to create the
-initial array from the linked list and then convert the sorted array into a linked list. This was probably not too
-efficient.
+initial array from the linked list and then convert the sorted array into a linked list.
 
-Merge sort is O(n log n) for the worst, average, and best cases. But because of the conversions from linked list to
-array would be O(n) since we would need to iterate through the linked list to add the nodes to the array. To transfer
-from array to linked list again would be O(n) since we would need to iterate through the array to add the nodes back
-to the linked list, which luckily the addLast method is O(1). So with all that the runtime would be O(n) for all cases.
+Merge sort is O(n log n) for the worst, average, and best cases. Converting from a linked list to array would be O(n)
+since we would need to iterate through the linked list to add the nodes to the array. To transfer from array to linked
+list again would be O(n) since we would need to iterate through the array to add the nodes back to the linked list,
+which luckily the addLast method is O(1). But for a big enough n, only the run time for merge sort matter, so it will
+be O(n log n).
 
 Pseudocode:
 
