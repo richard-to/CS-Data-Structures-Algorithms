@@ -11,6 +11,7 @@ public class Assignment1 {
     private static final String UHC_FILE = "UHC.dat";
     private static final String NEW_FILE = "new.dat";
     private static final String GRADES_FILE = "grades.dat";
+    private static final String SAVE_FILE = "newuhc.dat";
 
     public static void main(String[] args) {
 
@@ -49,6 +50,12 @@ public class Assignment1 {
             System.out.println("Member GPA List");
             System.out.println(HORIZONTAL_RULE);
             manager.printGPA();
+            System.out.println(PROMPT);
+            br.readLine();
+
+            System.out.println("Saving member List as uhc.dat...");
+            manager.saveList(SAVE_FILE);
+            System.out.println("Updated member list saved.");
 
         } catch(IOException e){
             System.err.println(e.getMessage());
