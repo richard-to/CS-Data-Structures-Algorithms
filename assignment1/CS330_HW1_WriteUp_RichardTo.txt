@@ -7,11 +7,7 @@ CS330 HW1 Write Up
 a and b) For the sorting algorithm, I implemented merge sort. I used arrays in my implementation, so I had to create the
 initial array from the linked list and then convert the sorted array into a linked list.
 
-Merge sort is O(n log n) for the worst, average, and best cases. Converting from a linked list to array would be O(n)
-since we would need to iterate through the linked list to add the nodes to the array. To transfer from array to linked
-list again would be O(n) since we would need to iterate through the array to add the nodes back to the linked list,
-which luckily the addLast method is O(1). But for a big enough n, only the run time for merge sort matter, so it will
-be O(n log n).
+Merge sort is O(n log n) for the worst, average, and best cases. Converting from a linked list to array would be O(n) since we would need to iterate through the linked list to add the nodes to the array. To transfer from array to linked list again would be O(n) since we would need to iterate through the array to add the nodes back to the linked list, which luckily the addLast method is O(1). But for a big enough n, only the run time for merge sort matter, so it will be O(n log n).
 
 Pseudocode:
 
@@ -61,10 +57,7 @@ Pseudocode:
 
 c)
 
-### Merge Sort Benchmarks
-
-I tried to use the Java System.nanoTime() method to do benchmarks, but it gave me inconsistent results. I think this is
-due to the JVM.
+I tried to use the Java System.nanoTime() method to do benchmarks, but it gave me inconsistent results. I think this is due to the JVM.
 
 Run 0
 Count: 1000    Time: 8316000 ns
@@ -85,11 +78,9 @@ Count: 100000  Time: 104849000 ns
 8
 ---
 
-a and b) The best case scenario for the add method is adding nodes to the head of the list. The node should be added to
-the head in O(1) time. The average and worse cases would be O(n) since the iterator would have to search in order to
-find the position of the nth node.
+a and b) The best case scenario for the add method is adding nodes to the head of the list. The node should be added to the head in O(1) time. The average and worse cases would be O(n) since the iterator would have to search in order to find the position of the nth node.
 
-Pseudocode for add method:
+Pseudocode:
 
 def add(pos, object):
 if(pos == 0){
@@ -118,8 +109,6 @@ if(pos == 0){
 }
 
 c)
-
-### Add Method Benchmarks
 
 Best Case Run 0
 Count: 1000    Time: 7321000 ns
