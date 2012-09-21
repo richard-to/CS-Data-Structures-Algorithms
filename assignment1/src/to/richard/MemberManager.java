@@ -55,6 +55,26 @@ public class MemberManager {
         return this;
     }
 
+    public MemberManager saveList(String filePath){
+
+        try {
+
+            File file = new File(filePath);
+
+            if(!file.exists()){
+                file.createNewFile();
+            }
+
+            BufferedWriter bw = new BufferedWriter(new FileWriter(file.getAbsoluteFile()));
+            bw.write(memberList.toString());
+            bw.close();
+
+        } catch(IOException e) {
+            System.err.println(e.getMessage());
+        }
+        return this;
+    }
+
     public MemberManager loadNewGrades(String filePath){
         File file = new File(filePath);
         try {
