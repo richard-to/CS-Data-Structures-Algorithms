@@ -56,9 +56,7 @@ public class MemberManager {
     }
 
     public MemberManager saveList(String filePath){
-
         try {
-
             File file = new File(filePath);
 
             if(!file.exists()){
