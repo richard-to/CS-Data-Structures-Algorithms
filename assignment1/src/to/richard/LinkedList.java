@@ -53,7 +53,9 @@ public class LinkedList<E> {
     public LinkedList<E> add(int pos, E object) throws IndexOutOfBoundsException {
         if(pos == 0){
             return addFirst(object);
-        } else if(!isEmpty()){
+        } else if(pos == size()) {
+            return addLast(object);
+        } if(!isEmpty()){
             InternalIter<E> iter = nodeIterator();
             int curPos = 0;
             LinkedListNode<E> prev = null;
