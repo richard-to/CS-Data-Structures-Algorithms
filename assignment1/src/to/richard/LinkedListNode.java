@@ -1,5 +1,10 @@
 package to.richard;
 
+/**
+ * Generic Double LinkedList Node
+ *
+ * @param <E>
+ */
 public class LinkedListNode<E> {
     public E object;
     public LinkedListNode<E> prev;
