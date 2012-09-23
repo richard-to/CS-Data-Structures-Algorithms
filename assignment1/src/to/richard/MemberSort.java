@@ -4,6 +4,16 @@ import java.util.Comparator;
 
 public class MemberSort {
 
+    /**
+     * Sorts list of members
+     *
+     * Merge sort is used to sort members internally.
+     *
+     * @param list    Member list to sort by
+     * @param compare Comparator class to decide where field to sort by
+     *
+     * @return Sorted linked list
+     */
     public LinkedList<Member> sort(LinkedList<Member> list, Comparator<Member> compare){
         Member[] members = new Member[list.size()];
         int index = 0;
