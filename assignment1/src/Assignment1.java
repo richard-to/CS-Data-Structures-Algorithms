@@ -16,6 +16,9 @@ public class Assignment1 {
     /**
      * Main application class
      *
+     * .dat files should be in same folder as where the main application
+     * is run from.
+     *
      * @param args
      */
     public static void main(String[] args) {
