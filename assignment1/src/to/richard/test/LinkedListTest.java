@@ -152,7 +152,7 @@ public class LinkedListTest {
         Member member1 = new Member("Bob");
         Member member2 = new Member("Jim");
         LinkedList<Member> list = new LinkedList<Member>();
-        list.add(0, member1).add(1, member2);
+        list.add(0, member1).add(2, member2);
     }
 
     @Test(expected=IndexOutOfBoundsException.class)
