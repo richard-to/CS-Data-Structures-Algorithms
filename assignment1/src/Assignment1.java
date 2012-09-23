@@ -13,6 +13,11 @@ public class Assignment1 {
     private static final String GRADES_FILE = "grades.dat";
     private static final String SAVE_FILE = "newuhc.dat";
 
+    /**
+     * Main application class
+     *
+     * @param args
+     */
     public static void main(String[] args) {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
