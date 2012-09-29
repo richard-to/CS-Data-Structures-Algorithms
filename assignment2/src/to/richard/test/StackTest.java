@@ -55,5 +55,23 @@ public class StackTest {
         assertEquals(new Integer(1), stack.top());
     }
 
+    @Test(expected=UnderflowException.class)
+    public void testPopUnderflow() throws UnderflowException{
+        Stack<Integer> stack = new Stack<Integer>();
+        stack.pop();
+    }
 
+    @Test
+    public void testTopAndPop() throws UnderflowException {
+        Stack<Integer> stack = new Stack<Integer>();
+        stack.push(1);
+        assertEquals(new Integer(1), stack.topAndPop());
+        assertEquals(true, stack.isEmpty());
+    }
+
+    @Test
+    public void testTopAndPopEmpty() throws UnderflowException {
+        Stack<Integer> stack = new Stack<Integer>();
+        assertEquals(null, stack.topAndPop());
+    }
 }
