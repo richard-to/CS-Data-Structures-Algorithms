@@ -74,4 +74,11 @@ public class StackTest {
         Stack<Integer> stack = new Stack<Integer>();
         assertEquals(null, stack.topAndPop());
     }
+
+    @Test
+    public void testMakeEmpty() {
+        Stack<Integer> stack = new Stack<Integer>();
+        stack.push(1).push(1).makeEmpty();
+        assertEquals(true, stack.isEmpty());
+    }
 }
