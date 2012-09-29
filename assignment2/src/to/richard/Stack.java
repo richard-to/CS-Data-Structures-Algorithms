@@ -47,7 +47,11 @@ public class Stack<E> {
      * Removes top object from stack
      * @return Stack<E>
      */
-    public Stack<E> pop(){
-
+    public Stack<E> pop() throws UnderflowException{
+        if(!isEmpty())
+            top = top.next;
+        else
+            throw new UnderflowException();
+        return this;
     }
 }
