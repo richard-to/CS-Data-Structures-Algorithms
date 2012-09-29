@@ -69,4 +69,14 @@ public class Stack<E> {
         }
         return top;
     }
+
+    /**
+     * Empties stack of all nodes
+     *
+     * @return Stack<E>
+     */
+    public Stack<E> makeEmpty(){
+        top = null;
+        return this;
+    }
 }
