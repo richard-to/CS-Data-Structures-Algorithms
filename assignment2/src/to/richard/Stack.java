@@ -46,6 +46,7 @@ public class Stack<E> {
     /**
      * Removes top object from stack
      * @return Stack<E>
+     * @throws UnderflowException
      */
     public Stack<E> pop() throws UnderflowException{
         if(!isEmpty())
@@ -53,5 +54,19 @@ public class Stack<E> {
         else
             throw new UnderflowException();
         return this;
+    }
+
+    /**
+     * Tops and pops object from stack
+     * @return object
+     */
+    public E topAndPop(){
+        E top = top();
+        try {
+            pop();
+        } catch(UnderflowException e){
+
+        }
+        return top;
     }
 }
