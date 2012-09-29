@@ -4,6 +4,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 import to.richard.Stack;
+import to.richard.UnderflowException;
 
 public class StackTest {
 
@@ -41,9 +42,18 @@ public class StackTest {
     }
 
     @Test
-    public void testPop(){
+    public void testPop() throws UnderflowException {
         Stack<Integer> stack = new Stack<Integer>();
         stack.push(1).pop();
         assertEquals(true, stack.isEmpty());
     }
+
+    @Test
+    public void testPopTwice() throws UnderflowException {
+        Stack<Integer> stack = new Stack<Integer>();
+        stack.push(1).push(3).push(4).pop().pop();
+        assertEquals(new Integer(1), stack.top());
+    }
+
+
 }
