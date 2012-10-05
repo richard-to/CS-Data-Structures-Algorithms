@@ -11,8 +11,22 @@ public class RPMCalculatorTest {
 
     @Test
     public void testValidSyntax(){
-        String input = "1 3 + 4 5 * /";
+        String input = " 1 3 + 4 5 * / 45   sqrt -";
         RPMValidator validator = new RPMValidator();
         assertEquals(true, validator.validateSyntax(input));
+    }
+
+    @Test
+    public void testBadSyntax(){
+        String input = "1 abd 3 + 4 5 * /";
+        RPMValidator validator = new RPMValidator();
+        assertEquals(false, validator.validateSyntax(input));
+    }
+
+    @Test
+    public void testBadSyntaxNegative(){
+        String input = "1 3 + 4 -52 * /";
+        RPMValidator validator = new RPMValidator();
+        assertEquals(false, validator.validateSyntax(input));
     }
 }
