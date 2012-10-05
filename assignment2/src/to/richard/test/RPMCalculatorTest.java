@@ -29,4 +29,11 @@ public class RPMCalculatorTest {
         RPMValidator validator = new RPMValidator();
         assertEquals(false, validator.validateSyntax(input));
     }
+
+    @Test
+    public void testValidStackUnderflow(){
+        String input = "1 3 + 5 -";
+        RPMValidator validator = new RPMValidator();
+        assertEquals(true, validator.validateStackUnderflow(input));
+    }
 }
