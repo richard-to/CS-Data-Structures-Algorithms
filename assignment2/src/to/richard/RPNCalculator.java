@@ -21,22 +21,22 @@ public class RPNCalculator {
             if(!trimmedToken.isEmpty()){
                 if(trimmedToken.matches("[0-9]+")){
                     operandStack.push(new Double(trimmedToken));
-                } else if(trimmedToken.matches("sqrt")){
+                } else if(trimmedToken.equals("sqrt")){
                     Double operator = operandStack.topAndPop();
                     operandStack.push(Math.sqrt(operator));
-                } else if(trimmedToken.matches("\\+")){
+                } else if(trimmedToken.equals("+")){
                     Double operator2 = operandStack.topAndPop();
                     Double operator1 = operandStack.topAndPop();
                     operandStack.push(operator1 + operator2);
-                } else if(trimmedToken.matches("\\-")){
+                } else if(trimmedToken.equals("-")){
                     Double operator2 = operandStack.topAndPop();
                     Double operator1 = operandStack.topAndPop();
                     operandStack.push(operator1 - operator2);
-                } else if(trimmedToken.matches("\\*")){
+                } else if(trimmedToken.equals("*")){
                     Double operator2 = operandStack.topAndPop();
                     Double operator1 = operandStack.topAndPop();
                     operandStack.push(operator1 * operator2);
-                } else if(trimmedToken.matches("/")){
+                } else if(trimmedToken.equals("/")){
                     Double operator2 = operandStack.topAndPop();
                     Double operator1 = operandStack.topAndPop();
                     if(operator2 != 0)
