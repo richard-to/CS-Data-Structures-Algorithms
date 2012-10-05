@@ -37,7 +37,7 @@ public class RPNValidator {
         for(String token:tokens){
             String trimmedToken = token.trim();
             if(!trimmedToken.isEmpty()){
-                if(trimmedToken.matches("sqrt")){
+                if(trimmedToken.equals("sqrt")){
                     if(operands == 0){
                         return true;
                     }
@@ -69,7 +69,7 @@ public class RPNValidator {
 
         for(String token:tokens){
             String trimmedToken = token.trim();
-            if(!trimmedToken.isEmpty() && !trimmedToken.matches("sqrt")){
+            if(!trimmedToken.isEmpty() && !trimmedToken.equals("sqrt")){
                 if(trimmedToken.matches("[\\-\\+\\*/]{1}"))
                     operators++;
                 else if(trimmedToken.matches("[0-9]+"))
