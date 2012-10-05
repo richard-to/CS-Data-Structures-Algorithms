@@ -3,7 +3,7 @@ package to.richard;
 /**
  * Validates RPM Input
  */
-public class RPMValidator {
+public class RPNValidator {
 
     /**
      * Checks for syntax error

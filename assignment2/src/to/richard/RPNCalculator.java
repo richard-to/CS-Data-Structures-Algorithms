@@ -3,8 +3,15 @@ package to.richard;
 /**
  * Calculates RPM input
  */
-public class RPMCalculator {
+public class RPNCalculator {
 
+    /**
+     * Calculates valid rpm expression
+     *
+     * @param input
+     * @return result of calculation
+     * @throws DivideByZeroException
+     */
     public double calc(String input) throws DivideByZeroException {
         Stack<Double> operandStack = new Stack<Double>();
         String[] tokens = input.split(" ");
