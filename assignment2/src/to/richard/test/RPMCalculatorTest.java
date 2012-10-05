@@ -86,4 +86,32 @@ public class RPMCalculatorTest {
         RPMCalculator calc = new RPMCalculator();
         assertEquals(-467.0, calc.calc(input), 0.001);
     }
+
+    @Test
+    public void testPostfixCalculation2() throws Exception {
+        String input = "100";
+        RPMCalculator calc = new RPMCalculator();
+        assertEquals(100, calc.calc(input), 0.001);
+    }
+
+    @Test
+    public void testPostfixCalculation3() throws Exception {
+        String input = "16 sqrt";
+        RPMCalculator calc = new RPMCalculator();
+        assertEquals(4, calc.calc(input), 0.001);
+    }
+
+    @Test
+    public void testPostfixCalculation4() throws Exception {
+        String input = "1 3 + 4 5 * /";
+        RPMCalculator calc = new RPMCalculator();
+        assertEquals(0.2, calc.calc(input), 0.001);
+    }
+
+    @Test
+    public void testPostfixCalculation5() throws Exception {
+        String input = "36 3 4 5 + sqrt * / sqrt";
+        RPMCalculator calc = new RPMCalculator();
+        assertEquals(2, calc.calc(input), 0.001);
+    }
 }
