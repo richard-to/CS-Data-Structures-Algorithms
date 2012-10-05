@@ -4,6 +4,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 import to.richard.RPMValidator;
+import to.richard.RPMCalculator;
 import to.richard.Stack;
 import to.richard.UnderflowException;
 
@@ -77,5 +78,12 @@ public class RPMCalculatorTest {
         String input = "8 3 + 4 sqrt 6 *";
         RPMValidator validator = new RPMValidator();
         assertEquals(true, validator.tooManyOperands(input));
+    }
+
+    @Test
+    public void testPostfixCalculation() throws Exception {
+        String input = "100 567 -";
+        RPMCalculator calc = new RPMCalculator();
+        assertEquals(-467.0, calc.calc(input), 0.001);
     }
 }
