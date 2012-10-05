@@ -6,19 +6,52 @@ package to.richard;
 public class RPMValidator {
 
     /**
-     * Validate syntax of expression
+     * Checks for syntax error
      *
      * @param input
      * @return boolean
      */
-    public boolean validateSyntax(String input){
+    public boolean syntaxError(String input){
         String[] tokens = input.split(" ");
         for(String token:tokens){
             String trimmedToken = token.trim();
             if(!trimmedToken.isEmpty() && !trimmedToken.matches("(sqrt|[\\-\\+\\*/]{1}|[0-9]+)")){
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
+    }
+
+    /**
+     * Checks for stack underflow
+     *
+     * @param input
+     * @return boolean
+     */
+    public boolean stackUnderflow(String input){
+        String[] tokens = input.split(" ");
+
+        int operators = 0;
+        int operands = 0;
+
+        for(String token:tokens){
+            String trimmedToken = token.trim();
+            if(!trimmedToken.isEmpty()){
+                if(trimmedToken.matches("sqrt")){
+                    if(operands == 0){
+                        return true;
+                    }
+                }else if(trimmedToken.matches("[\\-\\+\\*/]{1}")){
+                    operators++;
+                } else if(trimmedToken.matches("[0-9]+")){
+                    operands++;
+                }
+
+                if((operators > 0 || operands > 0) && operands <= operators){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
