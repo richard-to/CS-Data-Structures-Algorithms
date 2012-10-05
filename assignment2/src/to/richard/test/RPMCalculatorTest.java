@@ -18,7 +18,7 @@ public class RPMCalculatorTest {
 
     @Test
     public void testBadSyntax(){
-        String input = "1 abd 3 + 4 5 * /";
+        String input = "12 3f -";
         RPMValidator validator = new RPMValidator();
         assertEquals(true, validator.syntaxError(input));
     }
@@ -60,8 +60,22 @@ public class RPMCalculatorTest {
 
     @Test
     public void testStackUnderflowError(){
-        String input = "11 22 + /";
+        String input = "1 2 * / 3 4 -";
         RPMValidator validator = new RPMValidator();
         assertEquals(true, validator.stackUnderflow(input));
+    }
+
+    @Test
+    public void testTooManyOperandsValid(){
+        String input = "11 22 33 44 55 66 77 88 + - * / / * +";
+        RPMValidator validator = new RPMValidator();
+        assertEquals(false, validator.tooManyOperands(input));
+    }
+
+    @Test
+    public void testTooManyOperands(){
+        String input = "8 3 + 4 sqrt 6 *";
+        RPMValidator validator = new RPMValidator();
+        assertEquals(true, validator.tooManyOperands(input));
     }
 }
