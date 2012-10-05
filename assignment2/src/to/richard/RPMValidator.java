@@ -54,4 +54,32 @@ public class RPMValidator {
         }
         return false;
     }
+
+    /**
+     * Checks for too many operands
+     *
+     * @param input
+     * @return boolean
+     */
+    public boolean tooManyOperands(String input){
+        String[] tokens = input.split(" ");
+
+        int operators = 0;
+        int operands = 0;
+
+        for(String token:tokens){
+            String trimmedToken = token.trim();
+            if(!trimmedToken.isEmpty() && !trimmedToken.matches("sqrt")){
+                if(trimmedToken.matches("[\\-\\+\\*/]{1}"))
+                    operators++;
+                else if(trimmedToken.matches("[0-9]+"))
+                    operands++;
+            }
+        }
+
+        if(operands - operators > 1)
+            return true;
+        else
+            return false;
+    }
 }
