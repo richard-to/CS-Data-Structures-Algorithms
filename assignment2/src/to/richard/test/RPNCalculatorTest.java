@@ -3,6 +3,7 @@ package to.richard.test;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
+import to.richard.DivideByZeroException;
 import to.richard.RPNValidator;
 import to.richard.RPNCalculator;
 
@@ -111,5 +112,12 @@ public class RPNCalculatorTest {
         String input = "36 3 4 5 + sqrt * / sqrt";
         RPNCalculator calc = new RPNCalculator();
         assertEquals(2, calc.calc(input), 0.001);
+    }
+
+    @Test(expected=DivideByZeroException.class)
+    public void testPostfixCalculationDivide0() throws Exception {
+        String input = "36 0 /";
+        RPNCalculator calc = new RPNCalculator();
+        calc.calc(input);
     }
 }
