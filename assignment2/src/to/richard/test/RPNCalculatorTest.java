@@ -80,6 +80,21 @@ public class RPNCalculatorTest {
         assertEquals(true, validator.tooManyOperands(input));
     }
 
+
+    @Test(expected=DivideByZeroException.class)
+    public void testPostfixCalculationDivide0() throws Exception {
+        String input = "36 0 /";
+        RPNCalculator calc = new RPNCalculator();
+        calc.calc(input);
+    }
+
+    @Test(expected=NegativeSqrtException.class)
+    public void testPostfixCalculationNegSqrt() throws Exception {
+        String input = "0 36 - sqrt";
+        RPNCalculator calc = new RPNCalculator();
+        calc.calc(input);
+    }
+
     @Test
     public void testPostfixCalculation() throws Exception {
         String input = "100 567 -";
@@ -115,17 +130,10 @@ public class RPNCalculatorTest {
         assertEquals(2, calc.calc(input), 0.001);
     }
 
-    @Test(expected=DivideByZeroException.class)
-    public void testPostfixCalculationDivide0() throws Exception {
-        String input = "36 0 /";
+    @Test
+    public void testPostfixCalculation6() throws Exception {
+        String input = "16 sqrt sqrt 6 -";
         RPNCalculator calc = new RPNCalculator();
-        calc.calc(input);
-    }
-
-    @Test(expected=NegativeSqrtException.class)
-    public void testPostfixCalculationNegSqrt() throws Exception {
-        String input = "0 36 - sqrt";
-        RPNCalculator calc = new RPNCalculator();
-        calc.calc(input);
+        assertEquals(-4, calc.calc(input), 0.001);
     }
 }
