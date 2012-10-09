@@ -1,4 +1,5 @@
 import to.richard.DivideByZeroException;
+import to.richard.NegativeSqrtException;
 import to.richard.RPNCalculator;
 import to.richard.RPNValidator;
 
@@ -13,6 +14,7 @@ public class Assignment2 {
     public static final String ERR_UNDERFLOW = "Error: Stack underflow!";
     public static final String ERR_OPERANDS = "Error: Too many operands!";
     public static final String ERR_DIVIDE_0 = "Error: Division by 0!";
+    public static final String ERR_NEG_SQRT = "Error: Can't take Square root of negative number!";
     public static final String RESULT_MSG = "Answer: ";
     public static final String PROMPT_CONTINUE = "Do you want to enter another expression (y/n): ";
 
@@ -46,6 +48,8 @@ public class Assignment2 {
                         System.out.println(result);
                     } catch(DivideByZeroException e){
                         System.out.println(ERR_DIVIDE_0);
+                    } catch(NegativeSqrtException e){
+                        System.out.println(ERR_NEG_SQRT);
                     }
                 }
 
