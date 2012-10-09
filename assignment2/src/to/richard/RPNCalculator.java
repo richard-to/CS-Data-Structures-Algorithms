@@ -10,9 +10,9 @@ public class RPNCalculator {
      *
      * @param input
      * @return result of calculation
-     * @throws DivideByZeroException
+     * @throws DivideByZeroException,NegativeSqrtException
      */
-    public double calc(String input) throws DivideByZeroException {
+    public double calc(String input) throws DivideByZeroException, NegativeSqrtException {
         Stack<Double> operandStack = new Stack<Double>();
         String[] tokens = input.split(" ");
 
@@ -23,7 +23,10 @@ public class RPNCalculator {
                     operandStack.push(new Double(trimmedToken));
                 } else if(trimmedToken.equals("sqrt")){
                     Double operator = operandStack.topAndPop();
-                    operandStack.push(Math.sqrt(operator));
+                    if(operator >= 0)
+                        operandStack.push(Math.sqrt(operator));
+                    else
+                        throw new NegativeSqrtException();
                 } else if(trimmedToken.equals("+")){
                     Double operator2 = operandStack.topAndPop();
                     Double operator1 = operandStack.topAndPop();
