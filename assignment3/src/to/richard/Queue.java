@@ -47,4 +47,12 @@ public class Queue<E> {
         list = new LinkedList<E>();
         return this;
     }
+
+    /**
+     * Gets current size of queue()
+     * @return int
+     */
+    public int currentSize() {
+        return list.size();
+    }
 }
