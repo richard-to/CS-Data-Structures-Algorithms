@@ -42,4 +42,11 @@ public class QueueTest {
         queue.enqueue(1).enqueue(2).enqueue(3).makeEmpty();
         assertEquals(true, queue.isEmpty());
     }
+
+    @Test
+    public void testCurrentSize(){
+        Queue<Integer> queue = new Queue<Integer>();
+        queue.enqueue(1).enqueue(2);
+        assertEquals(new Integer(2), new Integer(queue.currentSize()));
+    }
 }
