@@ -80,7 +80,7 @@ public class SimulationTest {
 
     @Test
     public void testCheckoutCounterAdd(){
-        CheckoutCounter counter = new CheckoutCounter();
+        CheckoutCounter counter = new CheckoutCounter(new PerformanceMonitor());
         Customer customer1 = new Customer(6);
         Customer customer2 = new Customer(4);
         assertEquals(true, counter.isEmpty());
@@ -90,7 +90,7 @@ public class SimulationTest {
 
     @Test
     public void testProcessCustomer(){
-        CheckoutCounter counter = new CheckoutCounter();
+        CheckoutCounter counter = new CheckoutCounter(new PerformanceMonitor());
         Customer customer1 = new Customer(2);
         Customer customer2 = new Customer(5);
         counter.addCustomer(customer1).addCustomer(customer2);
@@ -108,7 +108,69 @@ public class SimulationTest {
     }
 
     @Test
-    public void testSimEmpty(){
+    public void testPerfMonTrackCust(){
+        Customer customer1 = new Customer(2);
+        Customer customer2 = new Customer(5);
+        PerformanceMonitor perfMon = new PerformanceMonitor();
+        perfMon.trackCustomer(customer1).trackCustomer(customer2);
+        assertEquals(new Integer(2), new Integer(perfMon.getTotalCustomers()));
+    }
+
+    @Test
+    public void testPerfMonTrackWaitTime(){
+        Customer customer1 = new Customer(2);
+        Customer customer2 = new Customer(5);
+        customer1.increaseWaitTime();
+        customer2.increaseWaitTime().increaseWaitTime();
+        PerformanceMonitor perfMon = new PerformanceMonitor();
+        perfMon.trackCustomer(customer1).trackCustomer(customer2);
+        assertEquals(new Integer(3), new Integer(perfMon.getTotalWaitTime()));
+    }
+
+    @Test
+    public void testPerfMonTrackCheckoutTime(){
+        Customer customer1 = new Customer(2);
+        Customer customer2 = new Customer(5);
+        PerformanceMonitor perfMon = new PerformanceMonitor();
+        perfMon.trackCustomer(customer1).trackCustomer(customer2);
+        assertEquals(new Integer(7), new Integer(perfMon.getTotalCheckoutTime()));
+    }
+
+    @Test
+    public void testPerfMonLongestWaitTime(){
+        Customer customer1 = new Customer(2);
+        Customer customer2 = new Customer(5);
+        customer1.increaseWaitTime();
+        customer2.increaseWaitTime().increaseWaitTime();
+        PerformanceMonitor perfMon = new PerformanceMonitor();
+        perfMon.trackCustomer(customer1).trackCustomer(customer2);
+        assertEquals(new Integer(2), new Integer(perfMon.getLongestWaitTime()));
+    }
+
+    @Test
+    public void testPerfMonAvgWaitTime(){
+        Customer customer1 = new Customer(2);
+        Customer customer2 = new Customer(5);
+        customer1.increaseWaitTime();
+        customer2.increaseWaitTime().increaseWaitTime().increaseWaitTime();
+        PerformanceMonitor perfMon = new PerformanceMonitor();
+        perfMon.trackCustomer(customer1).trackCustomer(customer2);
+        assertEquals(2.0, perfMon.getAvgWaitTime(), 0.001);
+    }
+
+    @Test
+    public void testPerfMonAvgCheckoutTime(){
+        Customer customer1 = new Customer(3);
+        Customer customer2 = new Customer(5);
+        customer1.increaseWaitTime();
+        customer2.increaseWaitTime().increaseWaitTime().increaseWaitTime();
+        PerformanceMonitor perfMon = new PerformanceMonitor();
+        perfMon.trackCustomer(customer1).trackCustomer(customer2);
+        assertEquals(4.0, perfMon.getAvgCheckoutTime(), 0.001);
+    }
+
+    @Test
+    public void testSimEmpty() throws Exception{
 
         Distribution<Integer> custProcTimeDistrib = new Distribution<Integer>();
         custProcTimeDistrib.add(.20, 2).add(.40, 3).add(.60, 4).add(.80, 5).add(1.0, 6);
@@ -124,14 +186,14 @@ public class SimulationTest {
                 .add(40.0, custFlowDistrib2);
 
         LinkedList<CheckoutCounter> checkoutCounters = new LinkedList<CheckoutCounter>();
-        checkoutCounters.add(new CheckoutCounter());
+        checkoutCounters.add(new CheckoutCounter(new PerformanceMonitor()));
         Supermarket supermarket = new Supermarket(
                 timeDistrib, custProcTimeDistrib, checkoutCounters);
         supermarket.countersEmpty();
     }
 
     @Test
-    public void testSimIsComplete(){
+    public void testSimIsComplete() throws Exception{
 
         Distribution<Integer> custProcTimeDistrib = new Distribution<Integer>();
         custProcTimeDistrib.add(1.0, 1);
@@ -147,7 +209,7 @@ public class SimulationTest {
                 .add(40.0, custFlowDistrib2);
 
         LinkedList<CheckoutCounter> checkoutCounters = new LinkedList<CheckoutCounter>();
-        checkoutCounters.add(new CheckoutCounter());
+        checkoutCounters.add(new CheckoutCounter(new PerformanceMonitor()));
         Supermarket supermarket = new Supermarket(
                 timeDistrib, custProcTimeDistrib, checkoutCounters);
         int count = 0;
@@ -159,7 +221,7 @@ public class SimulationTest {
     }
 
     @Test
-    public void testSimIsComplete2(){
+    public void testSimIsComplete2() throws Exception {
 
         Distribution<Integer> custProcTimeDistrib = new Distribution<Integer>();
         custProcTimeDistrib.add(1.0, 40);
@@ -172,7 +234,7 @@ public class SimulationTest {
         timeDistrib.add(5.0, custFlowDistrib1);
 
         LinkedList<CheckoutCounter> checkoutCounters = new LinkedList<CheckoutCounter>();
-        checkoutCounters.add(new CheckoutCounter());
+        checkoutCounters.add(new CheckoutCounter(new PerformanceMonitor()));
         Supermarket supermarket = new Supermarket(
                 timeDistrib, custProcTimeDistrib, checkoutCounters);
         int count = 0;
