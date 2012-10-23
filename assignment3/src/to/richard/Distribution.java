@@ -1,5 +1,6 @@
 package to.richard;
 
+import java.util.Map;
 import java.util.TreeMap;
 
 /**
@@ -35,9 +36,11 @@ public class Distribution<E> {
      * @return E
      */
     public E get(double point){
-        Double key = map.lowerKey(point);
-        E value = map.get(key);
-        return value;
+        Map.Entry<Double, E> entry = map.higherEntry(point);
+        if(entry != null){
+            return entry.getValue();
+        }
+        return null;
     }
 }
 
