@@ -1,9 +1,7 @@
 package to.richard.test;
 
 import org.junit.Test;
-import to.richard.Customer;
-import to.richard.Distribution;
-import to.richard.Queue;
+import to.richard.*;
 
 import static org.junit.Assert.assertEquals;
 
@@ -13,6 +11,20 @@ public class SimulationTest {
     public void testCustomerGetMinutesLeft() {
         Customer customer = new Customer(6);
         assertEquals(new Integer(6), new Integer(customer.getMinutesLeft()));
+        assertEquals(new Integer(6), new Integer(customer.getMinutesToProcess()));
+    }
+
+    @Test
+    public void testCustomerGetMinutesToProcess() {
+        Customer customer = new Customer(6);
+        assertEquals(new Integer(6), new Integer(customer.getMinutesToProcess()));
+    }
+
+    @Test
+    public void testCustomerIncreaseWaitingTime(){
+        Customer customer = new Customer(6);
+        customer.increaseWaitTime().increaseWaitTime();
+        assertEquals(new Integer(2), new Integer(customer.getMinutesWaiting()));
     }
 
     @Test
@@ -50,7 +62,7 @@ public class SimulationTest {
         distribution.add(.1, 0).add(.50, 1).add(.75, 2).add(.95, 3).add(1.0, 4);
         assertEquals(new Integer(0), new Integer(distribution.get(0.01)));
         assertEquals(new Integer(1), new Integer(distribution.get(.1)));
-        assertEquals(new Integer(2), new Integer(distribution.get(.76)));
+        assertEquals(new Integer(2), new Integer(distribution.get(.74)));
         assertEquals(new Integer(3), new Integer(distribution.get(.94)));
         assertEquals(new Integer(4), new Integer(distribution.get(.96)));
     }
@@ -64,5 +76,57 @@ public class SimulationTest {
         assertEquals(new Integer(2), new Integer(distribution.get(361)));
         assertEquals(new Integer(3), new Integer(distribution.get(600)));
         assertEquals(new Integer(4), new Integer(distribution.get(999)));
+    }
+
+    @Test
+    public void testCheckoutCounterAdd(){
+        CheckoutCounter counter = new CheckoutCounter();
+        Customer customer1 = new Customer(6);
+        Customer customer2 = new Customer(4);
+        assertEquals(true, counter.isEmpty());
+        counter.addCustomer(customer1).addCustomer(customer2);
+        assertEquals(new Integer(2), new Integer(counter.customersInLine()));
+    }
+
+    @Test
+    public void testProcessCustomer(){
+        CheckoutCounter counter = new CheckoutCounter();
+        Customer customer1 = new Customer(2);
+        Customer customer2 = new Customer(5);
+        counter.addCustomer(customer1).addCustomer(customer2);
+        counter.increaseWaitingTime().processCustomer();
+        assertEquals(new Integer(1), new Integer(customer1.getMinutesWaiting()));
+        assertEquals(new Integer(1), new Integer(customer1.getMinutesLeft()));
+        counter.increaseWaitingTime().processCustomer();
+        assertEquals(new Integer(2), new Integer(customer1.getMinutesWaiting()));
+        assertEquals(new Integer(0), new Integer(customer1.getMinutesLeft()));
+        counter.increaseWaitingTime().processCustomer();
+        assertEquals(new Integer(2), new Integer(customer1.getMinutesWaiting()));
+        assertEquals(new Integer(0), new Integer(customer1.getMinutesLeft()));
+        assertEquals(new Integer(3), new Integer(customer2.getMinutesWaiting()));
+        assertEquals(new Integer(4), new Integer(customer2.getMinutesLeft()));
+    }
+
+    @Test
+    public void testSimEmpty(){
+
+        Distribution<Integer> custProcTimeDistrib = new Distribution<Integer>();
+        custProcTimeDistrib.add(.20, 2).add(.40, 3).add(.60, 4).add(.80, 5).add(1.0, 6);
+
+        Distribution<Integer> custFlowDistrib1 = new Distribution<Integer>();
+        custFlowDistrib1.add(.1, 0).add(.5, 1).add(.75, 2).add(.95, 3).add(1.0, 4);
+
+        Distribution<Integer> custFlowDistrib2 = new Distribution<Integer>();
+        custFlowDistrib2.add(.1, 0).add(.3, 1).add(.55, 2).add(.8, 3).add(.9, 4).add(1.0, 5);
+
+        Distribution<Distribution<Integer>> timeDistrib = new Distribution<Distribution<Integer>>();
+        timeDistrib.add(20.0, custFlowDistrib1)
+                .add(40.0, custFlowDistrib2);
+
+        LinkedList<CheckoutCounter> checkoutCounters = new LinkedList<CheckoutCounter>();
+        checkoutCounters.add(new CheckoutCounter());
+        Supermarket supermarket = new Supermarket(
+                timeDistrib, custProcTimeDistrib, checkoutCounters);
+        supermarket.countersEmpty();
     }
 }
