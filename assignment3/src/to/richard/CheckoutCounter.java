@@ -7,10 +7,12 @@ public class CheckoutCounter {
     Queue<Customer> queue;
     LinkedList<Customer> list;
     Customer customer;
+    PerformanceMonitor perfMon;
 
-    public CheckoutCounter(){
+    public CheckoutCounter(PerformanceMonitor perfMon){
         queue = new Queue<Customer>();
         list = new LinkedList<Customer>();
+        this.perfMon = perfMon;
     }
 
     /**
@@ -66,6 +68,7 @@ public class CheckoutCounter {
             customer.process();
             if(customer.isFinished()){
                 list.remove(customer);
+                perfMon.trackCustomer(customer);
                 customer = null;
             }
         }
