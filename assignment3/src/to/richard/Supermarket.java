@@ -73,6 +73,7 @@ public class Supermarket {
                 counter.processCustomer();
             }
         }
+        minutesElapsed++;
     }
 
     /**
@@ -101,6 +102,10 @@ public class Supermarket {
      * Prints statistics on supermarket performance
      */
     public void printStats(){
-
+        Iterator<CheckoutCounter> iter = checkoutCounters.iterator();
+        while(iter.hasNext()){
+            CheckoutCounter counter = iter.next();
+            System.out.println(counter.customersInLine());
+        }
     }
 }
