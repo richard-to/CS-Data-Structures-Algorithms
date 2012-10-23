@@ -12,11 +12,27 @@ public class Customer {
     }
 
     /**
+     * Gets minutes to process customer
+     * @return int
+     */
+    public int getMinutesToProcess(){
+        return this.minutesToProcess;
+    }
+
+    /**
      * Gets minutes left to process customer
      * @return int
      */
     public int getMinutesLeft(){
         return this.minutesLeft;
+    }
+
+    /**
+     * Gets minutes customer waiting in line
+     * @return int
+     */
+    public int getMinutesWaiting() {
+        return this.minutesWaiting;
     }
 
     /**
