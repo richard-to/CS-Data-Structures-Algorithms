@@ -1,13 +1,10 @@
-import to.richard.CheckoutCounter;
-import to.richard.Customer;
-import to.richard.Distribution;
-import to.richard.Supermarket;
-import to.richard.LinkedList;
+import to.richard.*;
 
-public class Assignment3 {
+public class Assignment3{
 
-    public static final int numCheckoutCounters = 3;
-    public static void main(String[] args){
+    public static final int numCheckoutCounters = 11;
+
+    public static void main(String[] args) throws Exception {
 
         /**
          * Distribution for customer process time
@@ -25,13 +22,13 @@ public class Assignment3 {
         custFlowDistrib2.add(.1, 0).add(.3, 1).add(.55, 2).add(.8, 3).add(.9, 4).add(1.0, 5);
 
         Distribution<Integer> custFlowDistrib3 = new Distribution<Integer>();
-        custFlowDistrib3.add(.1, 0).add(.4, 1).add(.7, 2).add(.9, 3).add(.1, 4);
+        custFlowDistrib3.add(.1, 0).add(.4, 1).add(.7, 2).add(.9, 3).add(1.0, 4);
 
         Distribution<Integer> custFlowDistrib4 = new Distribution<Integer>();
         custFlowDistrib4.add(.05, 0).add(.25, 1).add(.55, 2).add(.80, 3).add(.9, 4).add(1.0, 5);
 
         Distribution<Integer> custFlowDistrib5 = new Distribution<Integer>();
-        custFlowDistrib4.add(.1, 0).add(.5, 1).add(.75, 2).add(.95, 3).add(1.0, 4);
+        custFlowDistrib5.add(.1, 0).add(.5, 1).add(.75, 2).add(.95, 3).add(1.0, 4);
 
 
         /**
@@ -48,14 +45,22 @@ public class Assignment3 {
         /**
          * Checkout counters
          */
+        PerformanceMonitor perfMon = new PerformanceMonitor();
         LinkedList<CheckoutCounter> checkoutCounters = new LinkedList<CheckoutCounter>();
         for(int i = 0; i < numCheckoutCounters; i++)
-            checkoutCounters.add(new CheckoutCounter());
+            checkoutCounters.add(new CheckoutCounter(perfMon));
         Supermarket supermarket = new Supermarket(
                 timeDistrib, custProcTimeDistrib, checkoutCounters);
-        int count = 0;
+
         while(!supermarket.isComplete()){
             supermarket.simMinute();
         }
+
+        System.out.println("Test with " + numCheckoutCounters + " checkout counters");
+        System.out.println("----------------------------------");
+        System.out.println("Total customers: " + perfMon.getTotalCustomers());
+        System.out.println("Longest wait time: " + perfMon.getLongestWaitTime() + " minutes");
+        System.out.println("Avg wait time: " + perfMon.getAvgWaitTime() + " minutes");
+        System.out.println("Avg checkout time: " + perfMon.getAvgCheckoutTime() + " minutes");
     }
 }
