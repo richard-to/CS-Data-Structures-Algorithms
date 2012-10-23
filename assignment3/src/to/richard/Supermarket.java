@@ -97,15 +97,4 @@ public class Supermarket {
         }
         return true;
     }
-
-    /**
-     * Prints statistics on supermarket performance
-     */
-    public void printStats(){
-        Iterator<CheckoutCounter> iter = checkoutCounters.iterator();
-        while(iter.hasNext()){
-            CheckoutCounter counter = iter.next();
-            System.out.println(counter.customersInLine());
-        }
-    }
 }
