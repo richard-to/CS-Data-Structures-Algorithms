@@ -129,4 +129,57 @@ public class SimulationTest {
                 timeDistrib, custProcTimeDistrib, checkoutCounters);
         supermarket.countersEmpty();
     }
+
+    @Test
+    public void testSimIsComplete(){
+
+        Distribution<Integer> custProcTimeDistrib = new Distribution<Integer>();
+        custProcTimeDistrib.add(1.0, 1);
+
+        Distribution<Integer> custFlowDistrib1 = new Distribution<Integer>();
+        custFlowDistrib1.add(1.0, 1);
+
+        Distribution<Integer> custFlowDistrib2 = new Distribution<Integer>();
+        custFlowDistrib2.add(1.0, 2);
+
+        Distribution<Distribution<Integer>> timeDistrib = new Distribution<Distribution<Integer>>();
+        timeDistrib.add(20.0, custFlowDistrib1)
+                .add(40.0, custFlowDistrib2);
+
+        LinkedList<CheckoutCounter> checkoutCounters = new LinkedList<CheckoutCounter>();
+        checkoutCounters.add(new CheckoutCounter());
+        Supermarket supermarket = new Supermarket(
+                timeDistrib, custProcTimeDistrib, checkoutCounters);
+        int count = 0;
+        while(!supermarket.isComplete()){
+            supermarket.simMinute();
+            count++;
+        }
+        assertEquals(new Integer(60), new Integer(count));
+    }
+
+    @Test
+    public void testSimIsComplete2(){
+
+        Distribution<Integer> custProcTimeDistrib = new Distribution<Integer>();
+        custProcTimeDistrib.add(1.0, 40);
+
+        Distribution<Integer> custFlowDistrib1 = new Distribution<Integer>();
+        custFlowDistrib1.add(1.0, 1);
+
+
+        Distribution<Distribution<Integer>> timeDistrib = new Distribution<Distribution<Integer>>();
+        timeDistrib.add(5.0, custFlowDistrib1);
+
+        LinkedList<CheckoutCounter> checkoutCounters = new LinkedList<CheckoutCounter>();
+        checkoutCounters.add(new CheckoutCounter());
+        Supermarket supermarket = new Supermarket(
+                timeDistrib, custProcTimeDistrib, checkoutCounters);
+        int count = 0;
+        while(!supermarket.isComplete()){
+            supermarket.simMinute();
+            count++;
+        }
+        assertEquals(new Integer(161), new Integer(count));
+    }
 }
