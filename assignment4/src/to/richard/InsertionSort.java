@@ -1,4 +1,32 @@
 package to.richard;
 
-public class InsertionSort {
+/**
+ * Generic insertion sort implementation
+ */
+public class InsertionSort<E> implements ISort<E> {
+
+    /**
+     * Sorts array using insertion sort.
+     *
+     * Will return a reference to sorted array, but it is kind of pointless
+     * since the array is passed by reference and the sorting is done on
+     * the array passed into the method.
+     *
+     * @param elements Elements must implement Comparable interface
+     * @return E[]
+     */
+    public E[] sort(Comparable<E>[] elements) {
+        int i;
+        int j;
+        int outerLen = elements.length;
+
+        for(i = 1; i < outerLen; i++){
+            Comparable<E> insertElement = elements[i];
+            for(j = i - 1; j >= 0 && insertElement.compareTo((E)elements[j]) < 0; j--){
+                elements[j+1] = elements[j];
+            }
+            elements[j+1] = insertElement;
+        }
+        return (E[]) elements;
+    }
 }
