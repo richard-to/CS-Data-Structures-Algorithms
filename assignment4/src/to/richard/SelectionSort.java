@@ -1,5 +1,9 @@
 package to.richard;
 
+/**
+ * Generic implementation of selection sort
+ * @param <E>
+ */
 public class SelectionSort<E> implements ISort<E> {
 
     /**
