@@ -6,6 +6,7 @@ import static org.junit.Assert.assertArrayEquals;
 
 import to.richard.SelectionSort;
 import to.richard.InsertionSort;
+import to.richard.MergeSort;
 
 public class SortTest {
 
@@ -80,4 +81,40 @@ public class SortTest {
         String[] sorted = sorter.sort(elements);
         assertArrayEquals(expected, sorted);
     }
+
+    @Test
+    public void testMergeSort0() {
+        String[] elements = new String[]{};
+        String[] expected = new String[]{};
+        MergeSort<String> sorter = new MergeSort<String>();
+        String[] sorted = sorter.sort(elements);
+        assertArrayEquals(expected, sorted);
+    }
+
+    @Test
+    public void testMergeSort1() {
+        String[] elements = new String[]{"B"};
+        String[] expected = new String[]{"B"};
+        MergeSort<String> sorter = new MergeSort<String>();
+        String[] sorted = sorter.sort(elements);
+        assertArrayEquals(expected, sorted);
+    }
+
+    @Test
+    public void testMergeSort5() {
+        String[] elements = new String[]{"B", "C", "A", "Z", "G"};
+        String[] expected = new String[]{"A", "B", "C", "G", "Z"};
+        MergeSort<String> sorter = new MergeSort<String>();
+        String[] sorted = sorter.sort(elements);
+        assertArrayEquals(expected, sorted);
+    }
+
+    @Test
+    public void testMergeSortReverse() {
+        String[] elements = new String[]{"Z", "R", "G", "A", "A"};
+        String[] expected = new String[]{"A", "A", "G", "R", "Z"};
+        MergeSort<String> sorter = new MergeSort<String>();
+        String[] sorted = sorter.sort(elements);
+        assertArrayEquals(expected, sorted);
+    }    
 }
