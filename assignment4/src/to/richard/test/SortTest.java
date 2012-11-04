@@ -7,6 +7,7 @@ import static org.junit.Assert.assertArrayEquals;
 import to.richard.SelectionSort;
 import to.richard.InsertionSort;
 import to.richard.MergeSort;
+import to.richard.QuickSort;
 
 public class SortTest {
 
@@ -116,5 +117,41 @@ public class SortTest {
         MergeSort<String> sorter = new MergeSort<String>();
         String[] sorted = sorter.sort(elements);
         assertArrayEquals(expected, sorted);
-    }    
+    }
+
+    @Test
+    public void testQuickSort0() {
+        String[] elements = new String[]{};
+        String[] expected = new String[]{};
+        QuickSort<String> sorter = new QuickSort<String>();
+        String[] sorted = sorter.sort(elements);
+        assertArrayEquals(expected, sorted);
+    }
+
+    @Test
+    public void testQuickSort1() {
+        String[] elements = new String[]{"B"};
+        String[] expected = new String[]{"B"};
+        QuickSort<String> sorter = new QuickSort<String>();
+        String[] sorted = sorter.sort(elements);
+        assertArrayEquals(expected, sorted);
+    }
+
+    @Test
+    public void testQuickSort5() {
+        String[] elements = new String[]{"B", "C", "A", "Z", "G"};
+        String[] expected = new String[]{"A", "B", "C", "G", "Z"};
+        QuickSort<String> sorter = new QuickSort<String>();
+        String[] sorted = sorter.sort(elements);
+        assertArrayEquals(expected, sorted);
+    }
+
+    @Test
+    public void testQuickSortReverse() {
+        String[] elements = new String[]{"Z", "R", "G", "A", "A"};
+        String[] expected = new String[]{"A", "A", "G", "R", "Z"};
+        QuickSort<String> sorter = new QuickSort<String>();
+        String[] sorted = sorter.sort(elements);
+        assertArrayEquals(expected, sorted);
+    }
 }
