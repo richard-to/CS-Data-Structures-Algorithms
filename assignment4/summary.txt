@@ -1,0 +1,51 @@
+# Assignment 4 Summary
+
+------------------------------------------------------
+Run 1       | Insertion | Selection | Merge | Quick  |
+------------------------------------------------------
+Comparisons | 248441    | 499500    | 9976  | 9401   |
+------------------------------------------------------
+Swaps       | 248443    | 989       | 9976  | 10967  |
+------------------------------------------------------
+
+------------------------------------------------------
+Run 2       | Insertion | Selection | Merge | Quick  |
+------------------------------------------------------
+Comparisons | 999       | 499500    | 9976  | 7481   |
+------------------------------------------------------
+Swaps       | 999       | 0         | 9976  | 8965   |
+------------------------------------------------------
+
+## Insertion Sort Results
+
+The results look right, especially for the second run, which is the best case of O(n).
+
+For run 1, we are doing better than O(n^2). It is not surprising that insertion sort since
+insertion sort performs better than the other O(n^2) algorithms such as selection sort.
+
+
+## Selection Sort Results
+
+The results look right for insertion sort too since even on a sorted array selection sort
+should still go through all the comparisons.
+
+Run 1 and 2 is not O(n^2). But it is not surprising that it is slower than insertion sort.
+
+
+## Merge Sort Results
+
+The merge sort looks right for both runs. It is pretty much equal to O(n log n) in both cases.
+
+
+## Quick Sort Results
+
+Both of quick sort looks right. It is a bit faster than O(n log n) in both cases.
+
+I could have improved this further by doing the insertion sort optimization but I was not
+entirely sure how to do this optimization. For example what would be the threshold to switch
+to insertion sort? In hindsight I should have tested some numbers.
+
+On my initial attempt, I tried to avoid the worst case by selecting the median of the left, middle, and right.
+But for some reason I was getting the worst case still. Which I think had to do with an error in my logic there.
+Instead I switched to just using the middle as the pivot and it worked ok for this my set of words.
+
