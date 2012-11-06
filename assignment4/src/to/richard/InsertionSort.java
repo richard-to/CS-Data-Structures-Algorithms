@@ -3,7 +3,7 @@ package to.richard;
 /**
  * Generic insertion sort implementation
  */
-public class InsertionSort<E> implements ISort<E> {
+public class InsertionSort<E> extends Sort<E> {
 
     /**
      * Sorts array using insertion sort.
@@ -16,15 +16,24 @@ public class InsertionSort<E> implements ISort<E> {
      * @return E[]
      */
     public E[] sort(Comparable<E>[] elements) {
+        resetSwapsAndComparisons();
+
         int i;
         int j;
         int outerLen = elements.length;
 
         for(i = 1; i < outerLen; i++){
             Comparable<E> insertElement = elements[i];
-            for(j = i - 1; j >= 0 && insertElement.compareTo((E)elements[j]) < 0; j--){
-                elements[j+1] = elements[j];
+            for(j = i - 1; j >= 0; j--){
+                incrementComparisons();
+                if(insertElement.compareTo((E)elements[j]) < 0){
+                    incrementSwaps();
+                    elements[j+1] = elements[j];
+                } else {
+                    break;
+                }
             }
+            incrementSwaps();
             elements[j+1] = insertElement;
         }
         return (E[]) elements;

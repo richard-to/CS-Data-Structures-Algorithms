@@ -5,7 +5,7 @@ package to.richard;
  *
  * @param <E>
  */
-public class MergeSort<E> implements ISort<E> {
+public class MergeSort<E> extends Sort<E> {
 
     private Comparable<E>[] tmpElements;
 
@@ -16,6 +16,7 @@ public class MergeSort<E> implements ISort<E> {
      * @return E[]
      */
     public E[] sort(Comparable<E>[] elements){
+        resetSwapsAndComparisons();
         tmpElements = (Comparable<E>[]) new Comparable[elements.length];
         mergeSort(elements, 0, elements.length);
         return (E[])elements;
@@ -50,17 +51,25 @@ public class MergeSort<E> implements ISort<E> {
 
         while(leftIndex < leftEnd && rightIndex < rightEnd){
              if(elements[leftIndex].compareTo((E)elements[rightIndex]) < 1){
+                 incrementComparisons();
+                 incrementSwaps();
                  tmpElements[tmpIndex++] = elements[leftIndex++];
              } else {
+                 incrementComparisons();
+                 incrementSwaps();
                  tmpElements[tmpIndex++] = elements[rightIndex++];
              }
         }
 
         while(leftIndex < leftEnd){
+            incrementComparisons();
+            incrementSwaps();
             tmpElements[tmpIndex++] = elements[leftIndex++];
         }
 
         while(rightIndex < rightEnd){
+            incrementComparisons();
+            incrementSwaps();
             tmpElements[tmpIndex++] = elements[rightIndex++];
         }
 
