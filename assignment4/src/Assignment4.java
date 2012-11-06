@@ -19,7 +19,7 @@ public class Assignment4 {
         sortTest("Quick Sort Test", tokens, new QuickSort<String>());
     }
 
-    public static void sortTest(String title, String[] tokens, ISort sorter) {
+    public static void sortTest(String title, String[] tokens, Sort sorter) {
         System.out.println(title);
         System.out.println("----------------------------");
         System.out.println("Original Order");
@@ -32,9 +32,23 @@ public class Assignment4 {
         TextTokenizer.print(copy);
         System.out.println();
 
+        System.out.print("Total comparisons: ");
+        System.out.println(sorter.getComparisions());
+
+        System.out.print("Total swaps: ");
+        System.out.println(sorter.getSwaps());
+        System.out.println();
+
         System.out.println("Second Sort");
         sorter.sort(copy);
         TextTokenizer.print(copy);
+        System.out.println();
+
+        System.out.print("Total comparisons: ");
+        System.out.println(sorter.getComparisions());
+
+        System.out.print("Total swaps: ");
+        System.out.println(sorter.getSwaps());
         System.out.println();
     }
 }
