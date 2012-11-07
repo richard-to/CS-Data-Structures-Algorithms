@@ -3,43 +3,47 @@
 ------------------------------------------------------
 Run 1       | Insertion | Selection | Merge | Quick  |
 ------------------------------------------------------
-Comparisons | 248441    | 499500    | 9976  | 9401   |
+Comparisons | 248441    | 499500    | 8684  | 9401   |
 ------------------------------------------------------
-Swaps       | 248443    | 989       | 9976  | 10967  |
+Swaps       | 248443    | 989       | 4930  | 10967  |
 ------------------------------------------------------
 
 ------------------------------------------------------
 Run 2       | Insertion | Selection | Merge | Quick  |
 ------------------------------------------------------
-Comparisons | 999       | 499500    | 9976  | 7481   |
+Comparisons | 999       | 499500    | 4932  | 7481   |
 ------------------------------------------------------
-Swaps       | 999       | 0         | 9976  | 8965   |
+Swaps       | 999       | 0         | 0     | 8965   |
 ------------------------------------------------------
 
 ## Insertion Sort Results
 
 The results look right, especially for the second run, which is the best case of O(n).
 
-For run 1, we are doing better than O(n^2). It is not surprising that insertion sort since
-insertion sort performs better than the other O(n^2) algorithms such as selection sort.
+For run 1, it looks to be still O(n^2) taking into account the total swaps and comparisons.
 
 
 ## Selection Sort Results
 
-The results look right for insertion sort too since even on a sorted array selection sort
+The results look right for selection sort too since even on a sorted array selection sort
 should still go through all the comparisons.
 
-Run 1 and 2 is not O(n^2). But it is not surprising that it is slower than insertion sort.
+Run 1 and 2 are O(n^2). It also is not surprising that it is slower than insertion sort in
+some cases.
 
 
 ## Merge Sort Results
 
-The merge sort looks right for both runs. It is pretty much equal to O(n log n) in both cases.
+The merge sort looks right for the first run. It slightly performed better than quick sort, which
+was somewhat surprising. But I guess 1000 isn't that big a data set.
+
+Run 2 perplexes me, since it is about half of n log n. But I guess that is because the .5 constant
+does not matter for big o.
 
 
 ## Quick Sort Results
 
-Both of quick sort looks right. It is a bit faster than O(n log n) in both cases.
+Both of quick sort looks right. It looks to be O(n log n) in both cases.
 
 I could have improved this further by doing the insertion sort optimization but I was not
 entirely sure how to do this optimization. For example what would be the threshold to switch

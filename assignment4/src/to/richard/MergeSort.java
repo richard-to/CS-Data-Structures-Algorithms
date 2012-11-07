@@ -52,7 +52,6 @@ public class MergeSort<E> extends Sort<E> {
         while(leftIndex < leftEnd && rightIndex < rightEnd){
              if(elements[leftIndex].compareTo((E)elements[rightIndex]) < 1){
                  incrementComparisons();
-                 incrementSwaps();
                  tmpElements[tmpIndex++] = elements[leftIndex++];
              } else {
                  incrementComparisons();
@@ -62,14 +61,11 @@ public class MergeSort<E> extends Sort<E> {
         }
 
         while(leftIndex < leftEnd){
-            incrementComparisons();
             incrementSwaps();
             tmpElements[tmpIndex++] = elements[leftIndex++];
         }
 
         while(rightIndex < rightEnd){
-            incrementComparisons();
-            incrementSwaps();
             tmpElements[tmpIndex++] = elements[rightIndex++];
         }
 
