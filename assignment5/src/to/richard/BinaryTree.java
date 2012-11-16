@@ -74,6 +74,14 @@ public class BinaryTree<E> {
         }
     }
 
+    /**
+     * Test if binary tree is empty
+     * @return
+     */
+    public boolean isEmpty(){
+        return (root == null);
+    }
+
     /*
     public BinaryTree<E> remove(E element){
 
@@ -91,9 +99,6 @@ public class BinaryTree<E> {
 
     }
 
-    public boolean isEmpty(){
-
-    }
     */
     public void printTree(){
 
