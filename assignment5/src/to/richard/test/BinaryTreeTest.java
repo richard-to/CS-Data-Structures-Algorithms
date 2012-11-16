@@ -18,4 +18,18 @@ public class BinaryTreeTest {
         assertEquals(new Integer(8), new Integer(tree.find(8)));
         assertEquals(null, tree.find(15));
     }
+
+    @Test(expected=IllegalArgumentException.class)
+    public void testDuplicate() {
+        BinaryTree<Integer> tree = new BinaryTree<Integer>();
+        tree.insert(3).insert(5).insert(2).insert(5);
+    }
+
+    @Test
+    public void testEmpty(){
+        BinaryTree<Integer> tree = new BinaryTree<Integer>();
+        assertEquals(true, tree.isEmpty());
+        tree.insert(34);
+        assertEquals(false, tree.isEmpty());
+    }
 }
