@@ -32,4 +32,18 @@ public class BinaryTreeTest {
         tree.insert(34);
         assertEquals(false, tree.isEmpty());
     }
+
+    @Test
+    public void testFindMin(){
+        BinaryTree<Integer> tree = new BinaryTree<Integer>();
+        tree.insert(30).insert(54).insert(3).insert(55).insert(1);
+        assertEquals(new Integer(1), new Integer(tree.findMin()));
+    }
+
+    @Test
+    public void testFindMax(){
+        BinaryTree<Integer> tree = new BinaryTree<Integer>();
+        tree.insert(30).insert(54).insert(3).insert(55).insert(1);
+        assertEquals(new Integer(55), new Integer(tree.findMax()));
+    }
 }

@@ -14,7 +14,7 @@ public class BinaryTree<E> {
      * @return BinaryTree<E>
      */
     public BinaryTree<E> insert(Comparable<E> element){
-        if(root == null){
+        if(isEmpty()){
             root = new BinaryNode<E>(element);
         } else {
             insert(element, root);
@@ -82,12 +82,64 @@ public class BinaryTree<E> {
         return (root == null);
     }
 
-    /*
-    public BinaryTree<E> remove(E element){
-
+    /**
+     * Finds smallest value in tree
+     *
+     * Will return null if empty
+     * @return E
+     */
+    public E findMin(){
+        if(!isEmpty()){
+            BinaryNode<E> node = findMin(root);
+            return (E)node.value;
+        } else {
+            return null;
+        }
     }
 
-    public E findMin(){
+    /**
+     * Finds smallest value recursively
+     * @param node
+     * @return BinaryNode<E>
+     */
+    private BinaryNode<E> findMin(BinaryNode<E> node){
+        if(node.left == null){
+            return node;
+        } else {
+            return findMin(node.left);
+        }
+    }
+
+    /**
+     * Finds largest value in tree
+     *
+     * Will return null if empty
+     * @return E
+     */
+    public E findMax(){
+        if(!isEmpty()){
+            BinaryNode<E> node = findMax(root);
+            return (E)node.value;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Finds largest value recursively
+     * @param node
+     * @return BinaryNode<E>
+     */
+    private BinaryNode<E> findMax(BinaryNode<E> node){
+        if(node.right == null){
+            return node;
+        } else {
+            return findMax(node.right);
+        }
+    }
+
+    /*
+    public BinaryTree<E> remove(E element){
 
     }
 
