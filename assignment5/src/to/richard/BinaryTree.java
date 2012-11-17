@@ -138,21 +138,74 @@ public class BinaryTree<E> {
         }
     }
 
-    /*
-    public BinaryTree<E> remove(E element){
-
+    /**
+     * Removes element from tree
+     * @param element
+     * @return BinaryTree<E>
+     */
+    public BinaryTree<E> remove(Comparable<E> element){
+        root = remove(element, root);
+        return this;
     }
 
-    public E findMax(){
-
+    /**
+     * Removes element from tree using recursion
+     * @param element
+     * @param node
+     * @return BinaryNode<E>
+     */
+    private BinaryNode<E> remove(Comparable<E> element, BinaryNode<E> node){
+        if(node == null) {
+            return node;
+        } else if(node.value.compareTo((E)element) > 0){
+            node.left = remove(element, node.left);
+            return null;
+        } else if(node.value.compareTo((E)element) < 0){
+            node.right = remove(element, node.right);
+        } else {
+            if(node.left == null && node.right == null){
+                return null;
+            } else if(node.left == null){
+                return node.right;
+            } else if(node.right == null){
+                return node.left;
+            } else {
+                BinaryNode<E> replacement = findMin(node.right);
+                remove(replacement.value, node.right);
+                return replacement;
+            }
+        }
+        return node;
     }
 
-    public void makeEmpty(){
-
+    /**
+     * Empties tree
+     * @return BinaryTree<E>
+     */
+    public BinaryTree<E> makeEmpty(){
+        root = null;
+        return this;
     }
 
-    */
-    public void printTree(){
+    /**
+     * Prints values of tree in order
+     * @return BinaryTree<E>
+     */
+    public BinaryTree<E> printTree(){
+        printTree(root);
+        return this;
+    }
 
+    /**
+     * Prints tree recursively using in order traversal
+     * @param node
+     */
+    private void printTree(BinaryNode<E> node){
+        if(node != null){
+            printTree(node.left);
+            System.out.print(node.value);
+            System.out.print(" ");
+            printTree(node.right);
+        }
     }
 }
