@@ -14,11 +14,7 @@ public class BinaryTree<E> {
      * @return BinaryTree<E>
      */
     public BinaryTree<E> insert(Comparable<E> element){
-        if(isEmpty()){
-            root = new BinaryNode<E>(element);
-        } else {
-            insert(element, root);
-        }
+        root = insert(element, root);
         return this;
     }
 
@@ -28,22 +24,17 @@ public class BinaryTree<E> {
      * @param node
      * @throws IllegalArgumentException
      */
-    private void insert(Comparable<E> element, BinaryNode<E> node) throws IllegalArgumentException {
-        if(node.value.compareTo((E)element) > 0){
-            if(node.left != null){
-                insert(element, node.left);
-            } else {
-                node.left = new BinaryNode<E>(element);
-            }
+    private BinaryNode<E> insert(Comparable<E> element, BinaryNode<E> node) throws IllegalArgumentException {
+        if(node == null){
+            node = new BinaryNode<E>(element);
+        } else if(node.value.compareTo((E)element) > 0){
+            node.left = insert(element, node.left);
         } else if(node.value.compareTo((E)element) < 0){
-            if(node.right != null){
-                insert(element, node.right);
-            } else {
-                node.right = new BinaryNode<E>(element);
-            }
+            node.right = insert(element, node.right);
         } else {
             throw new IllegalArgumentException();
         }
+        return node;
     }
 
     /**
