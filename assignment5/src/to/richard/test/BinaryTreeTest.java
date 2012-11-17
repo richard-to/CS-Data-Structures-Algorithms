@@ -2,6 +2,8 @@ package to.richard.test;
 
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 import to.richard.BinaryNode;
 import to.richard.BinaryTree;
@@ -45,5 +47,50 @@ public class BinaryTreeTest {
         BinaryTree<Integer> tree = new BinaryTree<Integer>();
         tree.insert(30).insert(54).insert(3).insert(55).insert(1);
         assertEquals(new Integer(55), new Integer(tree.findMax()));
+    }
+
+    @Test
+    public void remove(){
+        BinaryTree<Integer> tree = new BinaryTree<Integer>();
+        tree.insert(50).insert(30).insert(55).insert(33).insert(12)
+                .insert(11).insert(57).insert(35).insert(36).insert(47).insert(32);
+        assertEquals(new Integer(57), new Integer(tree.find(57)));
+        tree.remove(57);
+        assertEquals(null, tree.find(57));
+        tree.remove(11);
+        assertEquals(null, tree.find(11));
+        tree.remove(30);
+        assertEquals(null, tree.find(33));
+        tree.remove(50);
+        assertEquals(null, tree.find(50));
+        tree.remove(47);
+        assertEquals(null, tree.find(47));
+    }
+
+    @Test
+    public void testPrint(){
+
+        String treeOut = "11 12 30 32 33 35 36 47 50 55 57 ";
+        BinaryTree<Integer> tree = new BinaryTree<Integer>();
+        tree.insert(50).insert(30).insert(55).insert(33).insert(12)
+                .insert(11).insert(57).insert(35).insert(36).insert(47).insert(32);
+
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        System.setErr(new PrintStream(errContent));
+        tree.printTree();
+        assertEquals(treeOut, outContent.toString());
+        System.setOut(null);
+        System.setErr(null);
+    }
+
+    @Test
+    public void testMakeEmpty(){
+        BinaryTree<Integer> tree = new BinaryTree<Integer>();
+        tree.insert(50).insert(30).insert(55).insert(33).insert(12)
+                .insert(11).insert(57).insert(35).insert(36).insert(47).insert(32);
+        tree.makeEmpty();
+        assertEquals(true, tree.isEmpty());
     }
 }
