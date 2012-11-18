@@ -27,6 +27,15 @@ public abstract class Search<E> {
     }
 
     /**
+     * Sets total comparisons made
+     * @return Search<E>
+     */
+    protected Search<E> setComparisons(int comparisons){
+        this.comparisons = comparisons;
+        return this;
+    }
+
+    /**
      * Gets total comparisons made
      * @return int
      */
