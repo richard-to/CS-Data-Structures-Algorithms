@@ -33,7 +33,7 @@ public class NumGen {
      * Generates an array of random numbers
      * @return int[]
      */
-    public int[] generate(){
+    public Integer[] generate(){
         return (unique) ? generateUnique() : generateNonUnique();
     }
 
@@ -49,8 +49,8 @@ public class NumGen {
      * Generates sequence of numbers that are unique
      * @return int[]
      */
-    private int[] generateUnique(){
-        int[] sequence = new int[count];
+    private Integer[] generateUnique(){
+        Integer[] sequence = new Integer[count];
         HashMap<Integer, Integer> hash = new HashMap<Integer, Integer>();
 
         int i = 0;
@@ -69,8 +69,8 @@ public class NumGen {
      * Generates sequence of numbers that allows duplicates
      * @return int[]
      */
-    private int[] generateNonUnique(){
-        int[] sequence = new int[count];
+    private Integer[] generateNonUnique(){
+        Integer[] sequence = new Integer[count];
         Random rand = new Random();
         int i = 0;
         while(i < count){
