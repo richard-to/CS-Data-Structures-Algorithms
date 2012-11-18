@@ -126,6 +126,7 @@ public class AvlTreeTest {
         tree.remove(47);
         assertEquals(null, tree.find(47));
     }
+
     @Test
     public void testRemoveCase1() {
         AvlTree<Integer> tree = new AvlTree<Integer>();
@@ -144,7 +145,38 @@ public class AvlTreeTest {
     }
 
     @Test
+    public void testRemoveCase2() {
+        AvlTree<Integer> tree = new AvlTree<Integer>();
+        tree.insert(50).insert(40).insert(75).insert(28).insert(45).insert(80).insert(42).insert(49).remove(75);
+        String treeOut = "45 40 50 28 42 49 80 ";
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        System.setErr(new PrintStream(errContent));
+        tree.printTreeLevel();
+        assertEquals(treeOut, outContent.toString());
+        System.setOut(null);
+        System.setErr(null);
+    }
+
+    @Test
     public void testRemoveCase3() {
+        AvlTree<Integer> tree = new AvlTree<Integer>();
+        tree.insert(50).insert(25).insert(80).insert(10).insert(40).insert(60).insert(100)
+                .insert(30).insert(55).insert(90).insert(150).insert(85).insert(95).remove(60);
+        String treeOut = "50 25 90 10 40 80 100 30 55 85 95 150 ";
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        System.setErr(new PrintStream(errContent));
+        tree.printTreeLevel();
+        assertEquals(treeOut, outContent.toString());
+        System.setOut(null);
+        System.setErr(null);
+    }
+
+    @Test
+    public void testRemoveCase4() {
         AvlTree<Integer> tree = new AvlTree<Integer>();
         tree.insert(12).insert(5).insert(20).insert(4).insert(18).insert(25).insert(40).remove(5);
         String treeOut = "20 12 25 4 18 40 ";
