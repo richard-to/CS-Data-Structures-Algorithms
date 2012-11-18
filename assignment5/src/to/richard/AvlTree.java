@@ -38,11 +38,11 @@ public class AvlTree<E> {
             }
         } else if(node.value.compareTo((E)element) < 0){
             node.right = insert(element, node.right);
-            if(height(node.right) - height(node.right) < -1){
+            if(height(node.left) - height(node.right) < -1){
                 if(element.compareTo((E)node.right.value) > 0){
                     node = rotateWithRightChild(node);
                 } else {
-                    node = doubleWithLeftChild(node);
+                    node = doubleWithRightChild(node);
                 }
             }
         } else {
@@ -129,7 +129,7 @@ public class AvlTree<E> {
             }
 
             if(height(parent.left) - height(parent.right) == -2){
-                if(height(parent.right.right) <  height(parent.right.left)){
+                if(height(parent.right.right) < height(parent.right.left)){
                     parent = doubleWithRightChild(parent);
                 } else {
                     parent = rotateWithRightChild(parent);
@@ -345,6 +345,39 @@ public class AvlTree<E> {
             System.out.print(node.value);
             System.out.print(" ");
             printTree(node.right);
+        }
+    }
+
+    /**
+     * Prints values of tree in order by level starting at root
+     * @return AvlTree<E>
+     */
+    public AvlTree<E> printTreeLevel(){
+        printTreeLevel(root);
+        return this;
+    }
+
+    /**
+     * Prints tree  using breadth first
+     * @param node
+     */
+    private void printTreeLevel(AvlNode<E> node){
+        if(node == null){
+            System.out.print("");
+            return;
+        }
+        Queue<AvlNode<E>> queue = new Queue<AvlNode<E>>();
+        queue.enqueue(node);
+        while(!queue.isEmpty()){
+            AvlNode<E> currentNode = queue.dequeue();
+
+            System.out.print(currentNode.value);
+            System.out.print(" ");
+
+            if(currentNode.left != null)
+                queue.enqueue(currentNode.left);
+            if(currentNode.right != null)
+                queue.enqueue(currentNode.right);
         }
     }
 }
