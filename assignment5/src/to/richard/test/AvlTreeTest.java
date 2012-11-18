@@ -79,7 +79,6 @@ public class AvlTreeTest {
         assertEquals(treeOut, outContent.toString());
         System.setOut(null);
         System.setErr(null);
-
     }
 
     @Test(expected=IllegalArgumentException.class)
@@ -121,11 +120,42 @@ public class AvlTreeTest {
         tree.remove(11);
         assertEquals(null, tree.find(11));
         tree.remove(30);
-        assertEquals(null, tree.find(33));
+        assertEquals(null, tree.find(30));
         tree.remove(50);
         assertEquals(null, tree.find(50));
         tree.remove(47);
         assertEquals(null, tree.find(47));
+    }
+    @Test
+    public void testRemoveCase1() {
+        AvlTree<Integer> tree = new AvlTree<Integer>();
+        tree.insert(12).insert(6).insert(30).insert(4).insert(8).insert(25).insert(55)
+                .insert(2).insert(5).insert(7).insert(11).insert(57).insert(1)
+                .remove(8).remove(11);
+        String treeOut = "12 4 30 2 6 25 55 1 5 7 57 ";
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        System.setErr(new PrintStream(errContent));
+        tree.printTreeLevel();
+        assertEquals(treeOut, outContent.toString());
+        System.setOut(null);
+        System.setErr(null);
+    }
+
+    @Test
+    public void testRemoveCase3() {
+        AvlTree<Integer> tree = new AvlTree<Integer>();
+        tree.insert(12).insert(5).insert(20).insert(4).insert(18).insert(25).insert(40).remove(5);
+        String treeOut = "20 12 25 4 18 40 ";
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        System.setErr(new PrintStream(errContent));
+        tree.printTreeLevel();
+        assertEquals(treeOut, outContent.toString());
+        System.setOut(null);
+        System.setErr(null);
     }
 
     @Test
