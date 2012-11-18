@@ -11,6 +11,7 @@ public class AvlSearch<E> extends Search<E> {
      * @param sequence Array of elements in any order
      */
     public AvlSearch(Comparable<E>[] sequence){
+        this.sequence = sequence;
         this.avl = new AvlTree<E>();
         for(int i = 0; i < sequence.length; i++){
             this.avl.insert(sequence[i]);

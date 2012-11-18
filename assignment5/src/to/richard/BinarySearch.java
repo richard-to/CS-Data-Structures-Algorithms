@@ -5,8 +5,6 @@ package to.richard;
  */
 public class BinarySearch<E> extends Search<E> {
 
-    Comparable<E>[] sequence;
-
     /**
      * Constructor
      * @param sequence Array of elements in any order

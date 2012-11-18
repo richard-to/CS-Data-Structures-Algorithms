@@ -2,8 +2,6 @@ package to.richard;
 
 public class LinearSearch<E> extends Search<E> {
 
-    Comparable<E>[] sequence;
-
     /**
      * Constructor
      * @param sequence Array of elements in any order
