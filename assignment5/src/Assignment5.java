@@ -14,10 +14,10 @@ public class Assignment5 {
 
         CompMon<Integer> compMon = new CompMon<Integer>();
         getFindStats(compMon, linearSearch, "Linear Search");
-        getFindStats(compMon, linearSearch, "Binary Search");
-        getFindStats(compMon, binarySearch, "Bst Search");
+        getFindStats(compMon, binarySearch, "Binary Search");
+        getFindStats(compMon, bstSearch, "Bst Search");
         getFindStats(compMon, bstSortedSearch, "Bst Sorted Search");
-        getFindStats(compMon, bstSortedSearch, "Avl Search");
+        getFindStats(compMon, avlSearch, "Avl Search");
     }
 
     public static void getFindStats(CompMon<Integer> compMon, Search<Integer> search, String label){
