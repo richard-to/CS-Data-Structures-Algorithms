@@ -19,6 +19,7 @@ public class LinearSearch<E> extends Search<E> {
      * @return E
      */
     public E find(Comparable<E> element){
+        resetComparisons();
         for(int i = 0; i < sequence.length; i++){
             incrementComparisons();
             if(sequence[i].compareTo((E)element) == 0){
