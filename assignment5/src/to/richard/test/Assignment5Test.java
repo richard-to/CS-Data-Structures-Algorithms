@@ -48,6 +48,8 @@ public class Assignment5Test {
         for(int i = 0; i < seq.length; i++){
             assertEquals(seq[i], search.find(seq[i]));
         }
+        search.find(2);
+        assertEquals(new Integer(7), new Integer(search.getComparisons()));
         assertEquals(null, search.find(new Integer(755)));
     }
 
@@ -58,6 +60,8 @@ public class Assignment5Test {
         for(int i = 0; i < seq.length; i++){
             assertEquals(seq[i], search.find(seq[i]));
         }
+        search.find(2);
+        assertEquals(new Integer(3), new Integer(search.getComparisons()));
         assertEquals(null, search.find(new Integer(755)));
     }
 
@@ -68,6 +72,8 @@ public class Assignment5Test {
         for(int i = 0; i < seq.length; i++){
             assertEquals(seq[i], search.find(seq[i]));
         }
+        search.find(2);
+        assertEquals(new Integer(3), new Integer(search.getComparisons()));
         assertEquals(null, search.find(new Integer(755)));
     }
 
@@ -78,6 +84,9 @@ public class Assignment5Test {
         for(int i = 0; i < seq.length; i++){
             assertEquals(seq[i], search.find(seq[i]));
         }
+        search.find(2);
+        assertEquals(new Integer(3), new Integer(search.getComparisons()));
+        assertEquals(null, search.find(new Integer(755)));
         assertEquals(null, search.find(new Integer(755)));
     }
 }
