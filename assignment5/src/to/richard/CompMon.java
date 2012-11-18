@@ -12,14 +12,17 @@ public class CompMon<E> {
 
     Search<E> search;
 
+    public CompMon(){}
+
     public CompMon(Search<E> search){
         setSearch(search);
     }
 
     /**
      * Runs search on all elements of array and track stats.
-     * Stats will reset before running
-     * @return CompMon<E></E>
+     * Stats will reset before running.
+     * Not that this will fail if search is not set.
+     * @return CompMon<E>
      */
     public CompMon<E> run(){
         Comparable<E>[] sequence = search.getSequence();
@@ -52,7 +55,7 @@ public class CompMon<E> {
      * @return CompMon<E>
      */
     public CompMon<E> resetStats(){
-        min = 0;
+        min = -1;
         max = 0;
         total = 0;
         runs = 0;
@@ -65,7 +68,7 @@ public class CompMon<E> {
      * @return CompMon<E>
      */
     public CompMon<E> setMin(int min) {
-        if(this.min > min)
+        if(this.min == -1 || this.min > min)
             this.min = min;
         return this;
     }
