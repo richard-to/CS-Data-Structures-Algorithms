@@ -21,6 +21,29 @@ public class AvlTreeTest {
         assertEquals(null, tree.find(15));
     }
 
+    @Test
+    public void testInsertCase1() {
+        AvlTree<Integer> tree = new AvlTree<Integer>();
+        tree.insert(12).insert(5).insert(13).insert(17).insert(14).insert(19);
+        assertEquals(new Integer(19), new Integer(tree.find(19)));
+    }
+
+    @Test
+    public void testInsertCase4() {
+        AvlTree<Integer> tree = new AvlTree<Integer>();
+        tree.insert(12).insert(5).insert(15).insert(17).insert(13).insert(19);
+        String treeOut = "15 12 17 5 13 19 ";
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        System.setErr(new PrintStream(errContent));
+        tree.printTreeLevel();
+        assertEquals(treeOut, outContent.toString());
+        System.setOut(null);
+        System.setErr(null);
+
+    }
+
     @Test(expected=IllegalArgumentException.class)
     public void testDuplicate() {
         AvlTree<Integer> tree = new AvlTree<Integer>();
@@ -67,6 +90,35 @@ public class AvlTreeTest {
         assertEquals(null, tree.find(47));
     }
 
+    @Test
+    public void testPrintLevelEmpty(){
+        String treeOut = "";
+        AvlTree<Integer> tree = new AvlTree<Integer>();
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        System.setErr(new PrintStream(errContent));
+        tree.printTreeLevel();
+        assertEquals(treeOut, outContent.toString());
+        System.setOut(null);
+        System.setErr(null);
+    }
+
+    @Test
+    public void testPrintLevel(){
+        String treeOut = "50 30 55 12 33 52 ";
+        AvlTree<Integer> tree = new AvlTree<Integer>();
+        tree.insert(50).insert(55).insert(30).insert(33).insert(12).insert(52);
+
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        System.setErr(new PrintStream(errContent));
+        tree.printTreeLevel();
+        assertEquals(treeOut, outContent.toString());
+        System.setOut(null);
+        System.setErr(null);
+    }
     @Test
     public void testPrint(){
 
