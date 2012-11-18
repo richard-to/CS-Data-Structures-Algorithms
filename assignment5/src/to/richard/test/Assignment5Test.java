@@ -4,13 +4,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
-import to.richard.AvlSearch;
-import to.richard.BinarySearch;
-import to.richard.BstSearch;
-import to.richard.LinearSearch;
-import to.richard.MockNumGen;
-import to.richard.NumGen;
-import to.richard.Queue;
+import to.richard.*;
 
 public class Assignment5Test {
 
@@ -88,5 +82,18 @@ public class Assignment5Test {
         assertEquals(new Integer(3), new Integer(search.getComparisons()));
         assertEquals(null, search.find(new Integer(755)));
         assertEquals(null, search.find(new Integer(755)));
+    }
+
+    @Test
+    public void testCompMon(){
+        Integer[] seq = {233, 23, 78, 34, 80, 822, 2};
+        LinearSearch<Integer> search = new LinearSearch<Integer>(seq);
+        CompMon<Integer> compMon = new CompMon<Integer>(search);
+        compMon.run();
+        assertEquals(new Integer(7), new Integer(compMon.getRuns()));
+        assertEquals(new Integer(28), new Integer(compMon.getTotal()));
+        assertEquals(new Integer(1), new Integer(compMon.getMin()));
+        assertEquals(new Integer(7), new Integer(compMon.getMax()));
+        assertEquals(4, compMon.getAvg(), 0.0);
     }
 }
