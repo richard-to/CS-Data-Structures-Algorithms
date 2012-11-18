@@ -101,7 +101,6 @@ public class AvlTree<E> {
             return node;
         } else if(node.value.compareTo((E)element) > 0){
             node.left = remove(element, node.left);
-            return null;
         } else if(node.value.compareTo((E)element) < 0){
             node.right = remove(element, node.right);
         } else {
@@ -113,59 +112,27 @@ public class AvlTree<E> {
                 return node.left;
             } else {
                 AvlNode<E> replacement = findMax(node.left);
-                remove(replacement.value, node.left);
+                replacement.left = remove(replacement.value, node.left);
+                replacement.right = node.right;
                 return replacement;
             }
         }
 
-        AvlNode<E> parent = findParent(element, root);
-        if(parent != null){
-            if(height(parent.left) - height(parent.right) == 2){
-                if(height(parent.left.right) >  height(parent.left.left)){
-                    parent = doubleWithLeftChild(parent);
-                } else {
-                    parent = rotateWithLeftChild(parent);
-                }
+        if(height(node.left) - height(node.right) > 1){
+            if(height(node.left.left) > height(node.left.right)){
+                node = rotateWithLeftChild(node);
+            } else {
+                node = doubleWithLeftChild(node);
             }
-
-            if(height(parent.left) - height(parent.right) == -2){
-                if(height(parent.right.right) < height(parent.right.left)){
-                    parent = doubleWithRightChild(parent);
-                } else {
-                    parent = rotateWithRightChild(parent);
-                }
+        } else if(height(node.left) - height(node.right) < -1){
+            if(height(node.right.right) > height(node.right.left)){
+                node = rotateWithRightChild(node);
+            } else {
+                node = doubleWithRightChild(node);
             }
         }
         node.height = max(height(node.left), height(node.right)) + 1;
         return node;
-    }
-
-    /**
-     * Finds parent of element
-     * @param element
-     * @param node
-     * @return AvlNode<E>
-     */
-    private AvlNode<E> findParent(Comparable<E> element, AvlNode<E> node){
-        if(node == null) {
-            return null;
-        } else if(node.value.compareTo((E)element) > 0){
-            AvlNode<E> found = findParent(element, node.left);
-            if(found != null && found.value.compareTo((E)element) == 0){
-                return node;
-            } else {
-                return found;
-            }
-        } else if(node.value.compareTo((E)element) < 0){
-            AvlNode<E> found = findParent(element, node.right);
-            if(found != null && found.value.compareTo((E)element) == 0){
-                return node;
-            } else {
-                return found;
-            }
-        } else {
-            return node;
-        }
     }
 
     /**
