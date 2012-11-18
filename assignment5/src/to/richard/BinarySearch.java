@@ -11,7 +11,7 @@ public class BinarySearch<E> extends Search<E> {
      */
     public BinarySearch(Comparable<E>[] sequence){
         QuickSort<E> quickSort = new QuickSort<E>();
-        this.sequence = (Comparable<E>[])quickSort.sort(sequence);
+        this.sequence = (Comparable<E>[])quickSort.sort(sequence.clone());
     }
 
     /**
