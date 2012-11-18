@@ -24,8 +24,46 @@ public class AvlTreeTest {
     @Test
     public void testInsertCase1() {
         AvlTree<Integer> tree = new AvlTree<Integer>();
-        tree.insert(12).insert(5).insert(13).insert(17).insert(14).insert(19);
-        assertEquals(new Integer(19), new Integer(tree.find(19)));
+        tree.insert(12).insert(5).insert(15).insert(2).insert(1);
+        String treeOut = "12 2 15 1 5 ";
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        System.setErr(new PrintStream(errContent));
+        tree.printTreeLevel();
+        assertEquals(treeOut, outContent.toString());
+        System.setOut(null);
+        System.setErr(null);
+    }
+
+    @Test
+    public void testInsertCase2() {
+        AvlTree<Integer> tree = new AvlTree<Integer>();
+        tree.insert(12).insert(5).insert(15).insert(2).insert(7).insert(8);
+        String treeOut = "7 5 12 2 8 15 ";
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        System.setErr(new PrintStream(errContent));
+        tree.printTreeLevel();
+        assertEquals(treeOut, outContent.toString());
+        System.setOut(null);
+        System.setErr(null);
+    }
+
+    @Test
+    public void testInsertCase3() {
+        AvlTree<Integer> tree = new AvlTree<Integer>();
+        tree.insert(12).insert(5).insert(20).insert(25).insert(15).insert(17);
+        String treeOut = "15 12 20 5 17 25 ";
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        System.setErr(new PrintStream(errContent));
+        tree.printTreeLevel();
+        assertEquals(treeOut, outContent.toString());
+        System.setOut(null);
+        System.setErr(null);
     }
 
     @Test
