@@ -3,6 +3,7 @@ package to.richard;
 public class AvlTree<E> {
 
     private AvlNode<E> root;
+    private int comparisons = 0;
 
     public AvlTree(){
         root = null;
@@ -58,6 +59,7 @@ public class AvlTree<E> {
      * @return E
      */
     public E find(Comparable<E> element){
+        comparisons = 0;
         AvlNode<E> node = find(element, root);
         return (node != null) ? (E)node.value : null;
     }
@@ -71,12 +73,15 @@ public class AvlTree<E> {
     private AvlNode<E> find(Comparable<E> element, AvlNode<E> node){
         if(node == null) {
             return null;
-        } else if(node.value.compareTo((E)element) > 0){
-            return find(element, node.left);
-        } else if(node.value.compareTo((E)element) < 0){
-            return find(element, node.right);
         } else {
-            return node;
+            comparisons++;
+            if(node.value.compareTo((E)element) > 0){
+                return find(element, node.left);
+            } else if(node.value.compareTo((E)element) < 0){
+                return find(element, node.right);
+            } else {
+                return node;
+            }
         }
     }
 
@@ -346,5 +351,13 @@ public class AvlTree<E> {
             if(currentNode.right != null)
                 queue.enqueue(currentNode.right);
         }
+    }
+
+    /**
+     * Gets comparisons for find method
+     * @return int
+     */
+    public int getComparisons(){
+        return comparisons;
     }
 }

@@ -3,6 +3,7 @@ package to.richard;
 public class BinaryTree<E> {
 
     private BinaryNode<E> root;
+    private int comparisons = 0;
 
     public BinaryTree(){
         root = null;
@@ -43,6 +44,7 @@ public class BinaryTree<E> {
      * @return E
      */
     public E find(Comparable<E> element){
+        comparisons = 0;
         BinaryNode<E> node = find(element, root);
         return (node != null) ? (E)node.value : null;
     }
@@ -56,12 +58,15 @@ public class BinaryTree<E> {
     private BinaryNode<E> find(Comparable<E> element, BinaryNode<E> node){
         if(node == null) {
             return null;
-        } else if(node.value.compareTo((E)element) > 0){
-            return find(element, node.left);
-        } else if(node.value.compareTo((E)element) < 0){
-            return find(element, node.right);
         } else {
-            return node;
+            comparisons++;
+            if(node.value.compareTo((E)element) > 0){
+                return find(element, node.left);
+            } else if(node.value.compareTo((E)element) < 0){
+                return find(element, node.right);
+            } else {
+                return node;
+            }
         }
     }
 
@@ -198,5 +203,13 @@ public class BinaryTree<E> {
             System.out.print(" ");
             printTree(node.right);
         }
+    }
+
+    /**
+     * Gets comparisons for find method
+     * @return int
+     */
+    public int getComparisons(){
+        return comparisons;
     }
 }

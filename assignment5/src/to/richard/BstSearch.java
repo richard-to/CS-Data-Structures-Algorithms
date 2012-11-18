@@ -25,6 +25,7 @@ public class BstSearch<E> extends Search<E> {
      */
     public E find(Comparable<E> element){
         E foundElement = bst.find(element);
+        setComparisons(bst.getComparisons());
         return foundElement;
     }
 }

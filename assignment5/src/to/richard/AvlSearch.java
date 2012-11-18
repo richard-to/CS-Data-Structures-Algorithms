@@ -25,6 +25,7 @@ public class AvlSearch<E> extends Search<E> {
      */
     public E find(Comparable<E> element){
         E foundElement = avl.find(element);
+        setComparisons(avl.getComparisons());
         return foundElement;
     }
 }
