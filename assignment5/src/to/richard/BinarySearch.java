@@ -23,6 +23,7 @@ public class BinarySearch<E> extends Search<E> {
      * @return E
      */
     public E find(Comparable<E> element){
+        resetComparisons();
         Comparable<E> foundElement = find(element, sequence, 0, sequence.length-1);
         return (foundElement != null) ? (E)foundElement : null;
     }
@@ -38,6 +39,7 @@ public class BinarySearch<E> extends Search<E> {
     private Comparable<E> find(Comparable<E> element, Comparable<E>[] sequence, int min, int max){
         int mid = max - ((max - min) / 2);
         int elementVsSequence = element.compareTo((E)sequence[mid]);
+        incrementComparisons();
         if(elementVsSequence == 0){
             return element;
         } else if(max == min) {
