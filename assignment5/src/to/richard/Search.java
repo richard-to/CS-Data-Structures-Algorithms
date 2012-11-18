@@ -6,6 +6,8 @@ package to.richard;
 public abstract class Search<E> {
 
     private int comparisons = 0;
+    protected Comparable<E>[] sequence;
+
     abstract public E find(Comparable<E> element);
 
     /**
@@ -41,5 +43,13 @@ public abstract class Search<E> {
      */
     public int getComparisons(){
         return comparisons;
+    }
+
+    /**
+     * Gets array sequence
+     * @return Comparable<E>[]
+     */
+    public Comparable<E>[] getSequence(){
+        return sequence;
     }
 }
