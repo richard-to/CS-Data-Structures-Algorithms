@@ -15,6 +15,7 @@ public class Assignment6 {
      */
     public static void main(String[] args) {
         int[][] matrix = buildMatrix(MATRIX_SIZE, MIN_PRICE, MAX_PRICE);
+        dijkstra(matrix);
         printMatrix(matrix);
     }
 
@@ -37,13 +38,54 @@ public class Assignment6 {
     }
 
     /**
+     * My version of dijkstra. A bit inefficient
+     * @param matrix
+     */
+    public static void dijkstra(int[][] matrix) {
+        int  visitedCount = 1;
+        boolean[] visited = new boolean[matrix.length];
+        int[] totalCost = new int[matrix.length];
+        int[] predecessor = new int[matrix.length];
+
+        visited[0] = true;
+        totalCost[0] = 0;
+        predecessor[0] = 0;
+
+        int[] from = new int[matrix.length];
+        from[0] = 0;
+
+        while (true) {
+
+            int minFrom = 0;
+            int minTo = 0;
+            int minCost = 0;
+
+            for (int i = 0; i < visitedCount; i++) {
+                for (int g = 0; g < matrix[from[i]].length; g++) {
+                    if (!visited[g] && (minCost == 0 || matrix[from[i]][g] < minCost)) {
+                        minTo = from[visitedCount++] = g;
+                        minFrom = from[i];
+                        minCost = matrix[from[i]][g];
+                    }
+                }
+            }
+            visited[minTo] = true;
+            totalCost[minTo] += minCost;
+            predecessor[minTo] = minFrom;
+            if(visitedCount == matrix.length) {
+                break;
+            }
+        }
+    }
+
+    /**
      * Prints matrix
      * @param matrix
      */
     public static void printMatrix(int[][] matrix) {
         for (int i = 0; i < matrix.length; i++) {
             for (int g = 0; g < matrix[i].length; g++) {
-                System.out.printf("%4d ",matrix[i][g]);
+                System.out.printf("%4d ", matrix[i][g]);
             }
             System.out.println();
         }
