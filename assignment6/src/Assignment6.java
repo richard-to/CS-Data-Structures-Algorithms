@@ -5,18 +5,78 @@ import java.util.Random;
  */
 public class Assignment6 {
 
-    public static final int MATRIX_SIZE = 3;
+    public static final int MATRIX_SIZE = 50;
     public static final int MIN_PRICE = 99;
     public static final int MAX_PRICE = 1499;
+
+    /**
+     * Lists of 50 largest cities by population plus Anchorage
+     */
+    public static final String[] cities = {
+        "Anchorage",
+        "New York",
+        "Los Angeles",
+        "Chicago",
+        "Houston",
+        "Philadelphia",
+        "Phoenix",
+        "San Antonio",
+        "San Diego",
+        "Dallas",
+        "San Jose",
+        "Jacksonville",
+        "Indianapolis",
+        "San Francisco",
+        "Austin",
+        "Columbus",
+        "Fort Worth",
+        "Charlotte",
+        "Detroit",
+        "El Paso",
+        "Memphis",
+        "Baltimore",
+        "Boston",
+        "Seattle",
+        "Washington",
+        "Nashville-Davidson",
+        "Denver",
+        "Louisville-Jefferson County",
+        "Milwaukee",
+        "Portland",
+        "Las Vegas",
+        "Oklahoma City",
+        "Albuquerque",
+        "Tucson",
+        "Fresno",
+        "Sacramento",
+        "Long Beach",
+        "Kansas City",
+        "Mesa",
+        "Virginia Beach",
+        "Atlanta",
+        "Colorado Springs",
+        "Omaha",
+        "Raleigh",
+        "Miami",
+        "Cleveland",
+        "Tulsa",
+        "Oakland",
+        "Minneapolis",
+        "Wichita",
+        "Arlington"
+    };
 
     /**
      * Main Program
      * @param args
      */
     public static void main(String[] args) {
+        System.out.printf("Building price matrix for %d destinations...\n\n", MATRIX_SIZE);
         int[][] matrix = buildMatrix(MATRIX_SIZE, MIN_PRICE, MAX_PRICE);
-        dijkstra(matrix);
         printMatrix(matrix);
+        System.out.printf("Finding cheapest routes to %d destinations...\n\n", MATRIX_SIZE);
+        Vertex[] vertexes = dijkstra(matrix);
+        printShortestPaths(vertexes);
     }
 
     /**
@@ -38,21 +98,22 @@ public class Assignment6 {
     }
 
     /**
-     * My version of dijkstra. A bit inefficient
+     * My version of dijkstra. A bit inefficient, but it works.
      * @param matrix
+     * @return Vertex[]
      */
-    public static void dijkstra(int[][] matrix) {
-        int  visitedCount = 1;
-        boolean[] visited = new boolean[matrix.length];
-        int[] totalCost = new int[matrix.length];
-        int[] predecessor = new int[matrix.length];
+    public static Vertex[] dijkstra(int[][] matrix) {
 
-        visited[0] = true;
-        totalCost[0] = 0;
-        predecessor[0] = 0;
+        int  visitedCount = 1;
+
+        Vertex[] vertexes = new Vertex[matrix.length];
+        for (int i = 0; i < vertexes.length; i++) {
+            vertexes[i] = new Vertex(i, cities[i]);
+        }
+        vertexes[0].visited = true;
 
         int[] from = new int[matrix.length];
-        from[0] = 0;
+        from[0] = vertexes[0].id;
 
         while (true) {
 
@@ -62,22 +123,62 @@ public class Assignment6 {
 
             for (int i = 0; i < visitedCount; i++) {
                 for (int g = 0; g < matrix[from[i]].length; g++) {
-                    if (!visited[g] && (minCost == 0 || matrix[from[i]][g] < minCost)) {
-                        minTo = from[visitedCount++] = g;
+                    if (!vertexes[g].visited &&
+                            (minCost == 0 || vertexes[from[i]].totalCost + matrix[from[i]][g] < minCost)) {
+                        minTo = g;
                         minFrom = from[i];
                         minCost = matrix[from[i]][g];
                     }
                 }
             }
-            visited[minTo] = true;
-            totalCost[minTo] += minCost;
-            predecessor[minTo] = minFrom;
-            if(visitedCount == matrix.length) {
+            vertexes[minTo].visited = true;
+            vertexes[minTo].legCost = minCost;
+            vertexes[minTo].totalCost += minCost + vertexes[minFrom].totalCost;
+            vertexes[minTo].predecessor = vertexes[minFrom];
+
+            from[visitedCount++] = minTo;
+            if (visitedCount == matrix.length) {
                 break;
             }
         }
+        return vertexes;
     }
 
+    /**
+     * Prints shortest paths of destinations from Anchorage
+     * @param vertexes
+     */
+    public static void printShortestPaths(Vertex[] vertexes) {
+
+        String[] route = new String[vertexes.length];
+        int legCount = 1;
+        for (int i = 1; i < vertexes.length; i++) {
+            legCount = 0;
+            System.out.printf("Destination %s\n", vertexes[i].city);
+            System.out.println("==================================");
+
+            Vertex to = vertexes[i];
+            Vertex from = null;
+            while (true) {
+                from = to.predecessor;
+                if (from != null) {
+                    route[legCount++] = String.format("$%4d %s to %s", to.legCost, from.city, to.city);
+                    to = from;
+                } else {
+                    break;
+                }
+            }
+
+            for (int g = legCount - 1; g >= 0; g--) {
+                System.out.printf("%2d. %s\n", legCount - g, route[g]);
+            }
+
+            System.out.println("-------------------------------------");
+            System.out.printf("    $%4d Total Cost", vertexes[i].totalCost);
+            System.out.println();
+            System.out.println();
+        }
+    }
     /**
      * Prints matrix
      * @param matrix
@@ -89,5 +190,6 @@ public class Assignment6 {
             }
             System.out.println();
         }
+        System.out.println();
     }
 }
