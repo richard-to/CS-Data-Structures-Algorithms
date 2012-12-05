@@ -71,10 +71,10 @@ public class Assignment6 {
      * @param args
      */
     public static void main(String[] args) {
-        System.out.printf("Building price matrix for %d destinations...\n\n", MATRIX_SIZE);
+        System.out.printf("Building price matrix for %d destinations...\n\n", MATRIX_SIZE-1);
         int[][] matrix = buildMatrix(MATRIX_SIZE, MIN_PRICE, MAX_PRICE);
         printMatrix(matrix);
-        System.out.printf("Finding cheapest routes to %d destinations...\n\n", MATRIX_SIZE);
+        System.out.printf("Finding cheapest routes to %d destinations...\n\n", MATRIX_SIZE-1);
         Vertex[] vertexes = dijkstra(matrix);
         printShortestPaths(vertexes);
     }
