@@ -131,6 +131,7 @@ public class Assignment6 {
                     }
                 }
             }
+
             vertexes[minTo].visited = true;
             vertexes[minTo].legCost = minCost;
             vertexes[minTo].totalCost += minCost + vertexes[minFrom].totalCost;
@@ -179,6 +180,7 @@ public class Assignment6 {
             System.out.println();
         }
     }
+
     /**
      * Prints matrix
      * @param matrix
